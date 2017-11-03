@@ -25,6 +25,8 @@ To get started working on this repository:
 	8. Merge to master!
 	9. Go to 3
 
+Read this over if you want to better understand the structure of the project: http://exploreflask.com/en/latest/organizing.html
+
 **!! Important !!**
 
 Because Facebook Free Basics strives to provide services to a very wide range of phones

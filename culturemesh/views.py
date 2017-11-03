@@ -1,19 +1,16 @@
-from flask import Flask, render_template, request
-app = Flask(__name__)
-app.config['MYSQL_DATABASE_USER'] = 'culturp7_eric'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'culturemesh17'
-app.config['MYSQL_DATABASE_DB'] = 'culturp7_rehearsal'
-app.config['MYSQL_DATABASE_HOST'] = '50.116.65.175'
-
+from flask import render_template, request
 from database import mysql
-mysql.init_app(app)
+from culturemesh import app
 
 import hashlib
+import httplib
+import requests
 
-from network import network
-from dbdiagnostics import dbdiagnostics
-app.register_blueprint(network)
-app.register_blueprint(dbdiagnostics)
+@app.route("/example_api_call")
+def example_api_call():
+	# This will be replaced by an API call.  i.e. "http://www.culturemesh.com/api/v1/user?id=734"
+	r = requests.get("http://www.gutenberg.org/cache/epub/345/pg345.txt")
+	return render_template('example.html', example=r.text)
 
 @app.route("/")
 def home():
@@ -21,7 +18,7 @@ def home():
 
 @app.route("/about")
 def about():
-	return "<img src='https://s30.postimg.org/958ms8rip/Screen_Shot_2016_12_07_at_5_46_23_PM.png' height='500px'></img>dwefoie</title><b>HAHHAHHHH</b>"
+	return render_template('about.html')
 
 @app.route("/select_users")
 def select_users():
@@ -50,10 +47,12 @@ def login():
 	else:
 		return "Username or Password was incorrect. Try again."
 
-def retrieve(from_location, in_location):
-	pass
+##################### Error handling #########################
 
+@app.errorhandler(httplib.NOT_FOUND)
+def page_not_found(e):
+    return render_template('404.html'), httplib.NOT_FOUND
 
-
-if __name__ == "__main__":
-	app.run()
+@app.errorhandler(httplib.INTERNAL_SERVER_ERROR)
+def internal_server_error(e):
+    return render_template('500.html'), httplib.INTERNAL_SERVER_ERROR
