@@ -1,9 +1,8 @@
 from flask import render_template, request
-from database import mysql
 from culturemesh import app
 
 import hashlib
-import httplib
+import http.client as httplib
 import requests
 
 @app.route("/example_api_call")
@@ -19,34 +18,6 @@ def home():
 @app.route("/about")
 def about():
 	return render_template('about.html')
-
-@app.route("/select_users")
-def select_users():
-	cursor = mysql.connect().cursor()
-	cursor.execute("SELECT id, username, first_name, last_name FROM users")
-	users = cursor.fetchall()
-	s = ""
-	for u in users:
-		s += str(u) + "<br \\>"
-	return s
-
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-	email = request.form["emai[l"]
-	password = request.form["password"]
-	cursor = mysql.connect().cursor()
-	cursor.execute("SELECT password FROM users WHERE email = \'" + email + "\'")
-	temp = cursor.fetchall()
-	if temp != None:
-		truePassword = str(temp)[3:len(temp) - 3]
-		if hashlib.md5(password).hexdigest() == truePassword:
-			return "Success!!!!! here is the main page"
-			#return render_template('MainPage.html')
-		else:
-			return "Username or Password was incorrect. Try again."
-	else:
-		return "Username or Password was incorrect. Try again."
-
 ##################### Error handling #########################
 
 @app.errorhandler(httplib.NOT_FOUND)

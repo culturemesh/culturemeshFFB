@@ -1,7 +1,7 @@
 #
 # This file contains configuration variables for CultureMeshFFB.
 #
-#     DO NOT INCLUDE SENSITIVE CONFIGURATION HERE.  THIS WILL BE 
+#     DO NOT INCLUDE SENSITIVE CONFIGURATION HERE.  THIS WILL BE
 #     IN VERSION CONTROL.
 #
 
