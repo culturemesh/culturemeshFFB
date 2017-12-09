@@ -92,6 +92,10 @@ class Client(object):
 				user_id = int(path[2])
 				return self._mock_get_user(user_id)
 
+			elif path[1] == "post":
+				post_id = int(path[2])
+				return self._mock_get_post(post_id)
+
 		elif len(path) == 4:
 			if path[1] == "user":
 				if path[3] == "posts":
@@ -109,6 +113,10 @@ class Client(object):
 		raise NotImplementedError("Sorry.  Can't get that mock data yet!")
 
 
+	def _mock_get_all_users(self):
+		with open(USER_DATA_LOC_RELATIVE) as users:
+			return json.load(users)
+
 	def _mock_get_user(self, user_id):
 		with open(USER_DATA_LOC_RELATIVE) as users:
 			users = json.load(users)
@@ -116,13 +124,11 @@ class Client(object):
 				if u['user_id'] == user_id:
 					return u
 
-	def _mock_get_all_users(self):
-		with open(USER_DATA_LOC_RELATIVE) as users:
-			return json.load(users)
-
-	def _mock_get_all_networks(self):
-		with open(NETWORK_DATA_LOC_RELATIVE) as networks:
-			return json.load(networks)
+	def _mock_get_user_networks(self, user_id):
+		"""
+		Returns mock list of networks a user belongs to. 
+		"""
+		raise NotImplementedError
 
 	def _mock_get_user_posts(self, user_id):
 		with open(POST_DATA_LOC_RELATIVE) as posts:
@@ -141,6 +147,95 @@ class Client(object):
 				if e['host_id'] == user_id:
 					user_hosting.append(e)
 			return user_hosting
+
+	def _mock_get_all_networks(self):
+		with open(NETWORK_DATA_LOC_RELATIVE) as networks:
+			return json.load(networks)
+
+	def _mock_get_network(self, network_id):
+		"""
+		Returns mock data for a single 
+		network. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_network_events(self, network_id):
+		"""
+		Returns all events associated with this 
+		network. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_network_users(self, network_id):
+		"""
+		Return mock list of user jsons in the network. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_post(self, post_id):
+		with open(POST_DATA_LOC_RELATIVE) as posts:
+			posts = json.load(posts)
+			for p in posts:
+				if p['id'] == post_id:
+					return p
+			return None
+
+	def _mock_get_post_replies(self, post_id):
+		"""
+		Returns mock list of post replies to this
+		post. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_event(self, event_id):
+		"""
+		Returns this mock event. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_event_attendance(self, event_id):
+		"""
+		Returns mock list of users attending
+		this event. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_city(self, city_id):
+		"""
+		Returns mock data for this city. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_region(self, region_id):
+		"""
+		Returns mock data for this region. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_country(self, country_id):
+		"""
+		Returns mock data for country. 
+		"""
+		raise NotImplementedError
+
+	def _mock_location_autocomplete(self, input_text):
+		"""
+		Returns mock autocomplete entries for input_text. 
+		"""
+		raise NotImplementedError
+
+	def _mock_get_language(self, lang_id):
+		"""
+		Returns mock data for language. 
+		"""
+		raise NotImplementedError
+
+	def _mock_language_autocomplete(self, input_text):
+		"""
+		Returns mock autocomplete entries for language input. 
+		"""
+		raise NotImplementedError
+
 
 """ Register the client with the API functions. """
 

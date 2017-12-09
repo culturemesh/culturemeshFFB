@@ -4,6 +4,8 @@
 
 ####################### GET methods #######################
 
+from .client import Request
+
 def get_post(client, postId):
 	"""
 	:param client: the CultureMesh API client
@@ -11,7 +13,9 @@ def get_post(client, postId):
 
 	Returns the corresponding post JSON.
 	"""
-	raise NotImplementedError
+
+	url = '/post/%s' % str(postId)
+	return client._request(url, Request.GET)
 
 def get_post_replies(client, postId):
 	"""

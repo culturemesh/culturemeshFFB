@@ -16,7 +16,7 @@ def test_get_user():
 	
 	user = c.get_user(3)
 	print(user)
-	assert(user is not None)
+	assert_true(user is not None)
 
 def test_get_users():
 	"""
@@ -27,7 +27,7 @@ def test_get_users():
 	users = c.get_users()
 	print(users)
 
-	assert(len(users) == 5)
+	assert_true(len(users) == 5)
 
 def test_get_posts():
 	"""
@@ -38,7 +38,7 @@ def test_get_posts():
 	posts = c.get_user_posts(userId=4)
 	print(posts)
 
-	assert(len(posts) == 2)
+	assert_true(len(posts) == 2)
 
 def test_get_events():
 	"""
@@ -49,5 +49,5 @@ def test_get_events():
 	events = c.get_user_events(userId=5, role="hosting")
 	print(events)
 
-	assert(len(events) == 2)
-	assert(len(c.get_user_events(userId=1, role="hosting")) == 0)
+	assert_true(len(events) == 2)
+	assert_true(len(c.get_user_events(userId=1, role="hosting")) == 0)
