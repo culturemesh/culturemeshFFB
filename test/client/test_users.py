@@ -2,7 +2,7 @@
 # Tests client/users.py
 # 
 
-from nose.tools import assert_true
+from nose.tools import assert_true, assert_equal
 from culturemesh.client import Client
 
 def test_get_user():
@@ -27,7 +27,7 @@ def test_get_users():
 	users = c.get_users()
 	print(users)
 
-	assert_true(len(users) == 5)
+	assert_equal(len(users), 5)
 
 def test_get_posts():
 	"""
@@ -38,7 +38,7 @@ def test_get_posts():
 	posts = c.get_user_posts(userId=4)
 	print(posts)
 
-	assert_true(len(posts) == 2)
+	assert_equal(len(posts), 2)
 
 def test_get_events():
 	"""
@@ -49,5 +49,5 @@ def test_get_events():
 	events = c.get_user_events(userId=5, role="hosting")
 	print(events)
 
-	assert_true(len(events) == 2)
-	assert_true(len(c.get_user_events(userId=1, role="hosting")) == 0)
+	assert_equal(len(events), 2)
+	assert_equal(len(c.get_user_events(userId=1, role="hosting")), 0)

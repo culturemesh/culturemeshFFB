@@ -2,6 +2,8 @@
 # CultureMesh Locations API 
 #
 
+from .client import Request
+
 ####################### GET methods #######################
 
 def get_city(client, cityId):
@@ -11,7 +13,8 @@ def get_city(client, cityId):
 
 	Returns a city JSON.
 	"""
-	raise NotImplementedError
+	url = '/location/cities/%s' % str(cityId)
+	return client._request(url, Request.GET)
 
 def get_region(client, regionId):
 	"""
@@ -20,7 +23,8 @@ def get_region(client, regionId):
 
 	Returns a region JSON.
 	"""
-	raise NotImplementedError
+	url = '/location/regions/%s' % str(regionId)
+	return client._request(url, Request.GET)
 
 def get_country(client, countryId):
 	"""
@@ -29,7 +33,8 @@ def get_country(client, countryId):
 
 	Returns a country JSON.
 	"""
-	raise NotImplementedError
+	url = '/location/countries/%s' % str(countryId)
+	return client._request(url, Request.GET)
 
 def location_autocomplete(client, input_text):
 	"""
@@ -39,4 +44,6 @@ def location_autocomplete(client, input_text):
 	Returns a list of location JSONs
 	in order of relevance.
 	"""
-	raise NotImplementedError
+	query_params = {'input_text': input_text}
+	url = '/location/autocomplete'
+	return client._request(url, Request.GET, query_params=query_params)

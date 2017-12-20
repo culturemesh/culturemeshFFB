@@ -17,10 +17,17 @@ from urllib.parse import urlparse
 
 from enum import IntEnum
 
-USER_DATA_LOC_RELATIVE = "../data/db_mock_users.json"
-POST_DATA_LOC_RELATIVE = "../data/db_mock_posts.json"
-EVENT_DATA_LOC_RELATIVE = "../data/db_mock_events.json"
-NETWORK_DATA_LOC_RELATIVE = "../data/db_mock_networks.json"
+USER_DATA_LOC_RELATIVE = "../data/mock/db_mock_users.json"
+POST_DATA_LOC_RELATIVE = "../data/mock/db_mock_posts.json"
+POST_REPLY_DATA_LOC_RELATIVE = "../data/mock/db_mock_post_replies.json"
+EVENT_DATA_LOC_RELATIVE = "../data/mock/db_mock_events.json"
+EVENT_REGISTRATION_LOC_RELATIVE = "../data/mock/db_mock_event_registration.json"
+NET_REGISTRATION_LOC_RELATIVE = "../data/mock/db_mock_network_registration.json"
+NETWORK_DATA_LOC_RELATIVE = "../data/mock/db_mock_networks.json"
+LANG_DATA_LOC_RELATIVE = "../data/mock/db_mock_languages.json"
+CITY_DATA_LOC_RELATIVE = "../data/mock/db_mock_location_cities.json"
+REGION_DATA_LOC_RELATIVE = "../data/mock/db_mock_location_regions.json"
+COUNTRY_DATA_LOC_RELATIVE = "../data/mock/db_mock_location_countries.json"
 
 class Request(IntEnum):
 	GET = 1
@@ -66,7 +73,7 @@ class Client(object):
 
 		return response.json()
 
-	########################### MOCK DATA METHODS BELOW ###############################
+	########################### MOCK DATA METHODS BELOW ##########################
 
 	def _mock_request(self, url, query_params, body_params):
 		"""
@@ -83,10 +90,12 @@ class Client(object):
 				if body_params and "filter" in body_params and body_params["filter"]:
 					raise NotImplementedError("Sorry. Can't filter.")
 				return self._mock_get_all_users()
+
 			elif path[1] == "networks":
 				if body_params and "filter" in body_params and body_params["filter"]:
 					raise NotImplementedError("Sorry. Can't filter.")
 				return self._mock_get_all_networks()
+
 		elif len(path) == 3:
 			if path[1] == "user":
 				user_id = int(path[2])
@@ -96,15 +105,59 @@ class Client(object):
 				post_id = int(path[2])
 				return self._mock_get_post(post_id)
 
+			elif path[1] == "event":
+				event_id = int(path[2])
+				return self._mock_get_event(event_id)
+
+			elif path[1] == "language":
+
+				if path[2] == "autocomplete":
+					input_text = query_params['input_text']
+					return self._mock_language_autocomplete(input_text)
+
+				else:
+					lang_id = int(path[2])
+					return self._mock_get_language(lang_id)
+
+			elif path[1] == "location":
+
+				if path[2] == "autocomplete":
+					input_text = query_params['input_text']
+					return self._mock_location_autocomplete(input_text)
+
 		elif len(path) == 4:
 			if path[1] == "user":
 				if path[3] == "posts":
 					return self._mock_get_user_posts(int(path[2]))
+
 				elif path[3] == "events":
 					if query_params['role'] != "hosting":
 						raise NotImplementedError("Can only get events a user is hosting.")
-
 					return self._mock_get_user_events_hosting(int(path[2]))
+
+			elif path[1] == "post":
+				if path[3] == "replies":
+					return self._mock_get_post_replies(int(path[2]))
+
+			elif path[1] == "event":
+				if path[3] == "reg":
+					event_id = int(path[2])
+					return self._mock_get_event_registration(event_id)
+
+			elif path[1] == "location":
+
+				if path[2] == "cities":
+					city_id = int(path[3])
+					return self._mock_get_city(city_id)
+
+				elif path[2] == "regions":
+					region_id = int(path[3])
+					return self._mock_get_region(region_id)
+
+				elif path[2] == "countries":
+					country_id = int(path[3])
+					return self._mock_get_country(country_id)
+
 			else:
 				pass
 		elif len(path) == 5:
@@ -185,63 +238,100 @@ class Client(object):
 		Returns mock list of post replies to this
 		post. 
 		"""
-		raise NotImplementedError
+		with open(POST_REPLY_DATA_LOC_RELATIVE) as post_replies:
+			post_replies_ = []
+			post_replies = json.load(post_replies)
+			for p in post_replies:
+				if p['parent_id'] == post_id:
+					post_replies_.append(p)
+			return post_replies_
 
 	def _mock_get_event(self, event_id):
 		"""
 		Returns this mock event. 
 		"""
-		raise NotImplementedError
+		with open(EVENT_DATA_LOC_RELATIVE) as events:
+			events = json.load(events)
+			for e in events:
+				if e['id'] == event_id:
+					return e
+			return None
 
-	def _mock_get_event_attendance(self, event_id):
+	def _mock_get_event_registration(self, event_id):
 		"""
 		Returns mock list of users attending
 		this event. 
 		"""
-		raise NotImplementedError
+		with open(EVENT_REGISTRATION_LOC_RELATIVE) as event_regs:
+			event_regs_ = []
+			event_regs = json.load(event_regs)
+			for reg in event_regs:
+				if reg['id_event'] == event_id:
+					event_regs_.append(reg)
+			return event_regs_
 
 	def _mock_get_city(self, city_id):
 		"""
 		Returns mock data for this city. 
 		"""
-		raise NotImplementedError
+		with open(CITY_DATA_LOC_RELATIVE) as cities:
+			cities = json.load(cities)
+			for c in cities:
+				if c['id'] == city_id:
+					return c
+			return None
 
 	def _mock_get_region(self, region_id):
 		"""
 		Returns mock data for this region. 
 		"""
-		raise NotImplementedError
+		with open(REGION_DATA_LOC_RELATIVE) as regions:
+			regions = json.load(regions)
+			for r in regions:
+				if r['id'] == region_id:
+					return r
+			return None
 
 	def _mock_get_country(self, country_id):
 		"""
 		Returns mock data for country. 
 		"""
-		raise NotImplementedError
+		with open(COUNTRY_DATA_LOC_RELATIVE) as countries:
+			countries = json.load(countries)
+			for c in countries:
+				if c['id'] == country_id:
+					return c
+			return None
 
 	def _mock_location_autocomplete(self, input_text):
 		"""
 		Returns mock autocomplete entries for input_text. 
 		"""
-		raise NotImplementedError
+		return input_text + " + [location autocompleted text]"
 
 	def _mock_get_language(self, lang_id):
 		"""
 		Returns mock data for language. 
 		"""
-		raise NotImplementedError
+		with open(LANG_DATA_LOC_RELATIVE) as langs:
+			langs = json.load(langs)
+			for l in langs:
+				if l['id'] == lang_id:
+					return l
+			return None
 
 	def _mock_language_autocomplete(self, input_text):
 		"""
 		Returns mock autocomplete entries for language input. 
 		"""
-		raise NotImplementedError
+		return input_text + " + [language autocompleted text]"
 
 
 """ Register the client with the API functions. """
 
 from .example_api_module import get_gutenberg_novel
 from .events import get_event
-from .events import get_event_attendance_list
+from .events import get_event_registration_list
 from .events import create_event
 from .events import update_event
 from .languages import get_language
@@ -270,7 +360,7 @@ from .networks import get_networks
 
 Client.get_gutenberg_novel = get_gutenberg_novel
 Client.get_event = get_event
-Client.get_event_attendance_list = get_event_attendance_list
+Client.get_event_registration_list = get_event_registration_list
 Client.create_event = create_event
 Client.update_event = update_event
 Client.get_language = get_language

@@ -2,6 +2,8 @@
 # CultureMesh Languages API 
 #
 
+from .client import Request
+
 ####################### GET methods #######################
 
 def get_language(client, langId):
@@ -11,7 +13,8 @@ def get_language(client, langId):
 
 	Returns a language JSON.
 	"""
-	raise NotImplementedError
+	url = '/language/%s' % str(langId)
+	return client._request(url, Request.GET)
 
 def language_autocomplete(client, input_text):
 	"""
@@ -21,4 +24,6 @@ def language_autocomplete(client, input_text):
 	Returns a list of language JSONs
 	in order of relevance.
 	"""
-	raise NotImplementedError
+	query_params = {'input_text': input_text}
+	url = '/language/autocomplete'
+	return client._request(url, Request.GET, query_params=query_params)

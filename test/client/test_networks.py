@@ -2,7 +2,7 @@
 # Tests client/networks.py
 #
 
-from nose.tools import assert_true
+from nose.tools import assert_true, assert_equal
 from culturemesh.client import Client
 
 def test_get_networks():
@@ -14,4 +14,4 @@ def test_get_networks():
 	networks = c.get_networks()
 	print(networks)
 
-	assert(len(networks) == 2)
+	assert_equal(len(networks), 2)

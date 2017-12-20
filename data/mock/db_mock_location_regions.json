@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "north",
+    "latitude": 5000.4321,
+    "longitude": 1000.1234,
+    "country_id": 1,
+    "country_name": "corneria",
+    "population": 400000,
+    "feature_code": "string"
+  },
+  {
+    "id": 2,
+    "name": "south",
+    "latitude": 4000.4321,
+    "longitude": 1000.1234,
+    "country_id": 1,
+    "country_name": "corneria",
+    "population": 600000,
+    "feature_code": "string"
+  },
+  {
+    "id": 3,
+    "name": "east",
+    "latitude": 50.100,
+    "longitude": 250.200,
+    "country_id": 2,
+    "country_name": "rohan",
+    "population": 300,
+    "feature_code": "idk"
+  },
+  {
+    "id": 4,
+    "name": "west",
+    "latitude": 150.100,
+    "longitude": 150.200,
+    "country_id": 2,
+    "country_name": "rohan",
+    "population": 50,
+    "feature_code": "idk"
+  }
+]

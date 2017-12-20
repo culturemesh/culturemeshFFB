@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "City A",
+    "latitude": 1.1,
+    "longitude": 2.2,
+    "region_id": 1,
+    "region_name": "north",
+    "country_id": 1,
+    "country_name": "corneria",
+    "population": 350000,
+    "feature_code": "idk",
+    "tweet_terms": "idk"
+  },
+  {
+    "id": 2,
+    "name": "City B",
+    "latitude": 3.3,
+    "longitude": 4.4,
+    "region_id": 1,
+    "region_name": "north",
+    "country_id": 1,
+    "country_name": "corneria",
+    "population": 100000,
+    "feature_code": "idk",
+    "tweet_terms": "idk"
+  },
+  {
+    "id": 3,
+    "name": "City C",
+    "latitude": 5.5,
+    "longitude": 6.6,
+    "region_id": 2,
+    "region_name": "south",
+    "country_id": 1,
+    "country_name": "corneria",
+    "population": 20000,
+    "feature_code": "idk",
+    "tweet_terms": "idk"
+  },
+  {
+    "id": 4,
+    "name": "City D",
+    "latitude": 7.7,
+    "longitude": 8.8,
+    "region_id": 3,
+    "region_name": "east",
+    "country_id": 2,
+    "country_name": "rohan",
+    "population": 280,
+    "feature_code": "idk",
+    "tweet_terms": "idk"
+  },
+  {
+    "id": 5,
+    "name": "City E",
+    "latitude": 9.9,
+    "longitude": 10.10,
+    "region_id": 4,
+    "region_name": "west",
+    "country_id": 2,
+    "country_name": "rohan",
+    "population": 20,
+    "feature_code": "idk",
+    "tweet_terms": "idk"
+  },
+  {
+    "id": 6,
+    "name": "City F",
+    "latitude": 11.11,
+    "longitude": 12.12,
+    "region_id": 4,
+    "region_name": "west",
+    "country_id": 2,
+    "country_name": "rohan",
+    "population": 25,
+    "feature_code": "idk",
+    "tweet_terms": "idk"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id_user": 1,
+    "id_network": 0,
+    "join_date": "2017-02-22 11:53:30"
+  },
+    {
+    "id_user": 4,
+    "id_network": 0,
+    "join_date": "2017-02-23 11:53:30"
+  },
+    {
+    "id_user": 5,
+    "id_network": 0,
+    "join_date": "2017-02-24 11:53:30"
+  },
+  {
+    "id_user": 2,
+    "id_network": 1,
+    "join_date": "2017-02-25 11:53:30"
+  },
+  {
+    "id_user": 3,
+    "id_network": 1,
+    "join_date": "2017-02-26 11:53:30"
+  },
+  {
+    "id_user": 4,
+    "id_network": 1,
+    "join_date": "2017-02-27 11:53:30"
+  }
+]

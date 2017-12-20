@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "iso_a2": 0,
+    "name": "corneria",
+    "latitude": 4321.4321,
+    "longitude": 1234.1234,
+    "population": 1000000,
+    "feature_code": "idk"
+  },
+  {
+    "id": 2,
+    "iso_a2": 0,
+    "name": "rohan",
+    "latitude": 100.100,
+    "longitude": 200.200,
+    "population": 350,
+    "feature_code": "idk"
+  }
+]

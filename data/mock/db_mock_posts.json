@@ -24,7 +24,7 @@
   {
     "user_id": 1,
     "post_text": "Veritatis illum occaecati est error magni nesciunt. Voluptate cum odio voluptatum quasi natus. Illo vel tempora pariatur tempore.",
-    "network_id": 1,
+    "network_id": 0,
     "img_link": "https://dummyimage.com/503x995",
     "vid_link": "https://dummyimage.com/796x497",
     "post_date": "2017-04-03 18:27:27",
@@ -46,7 +46,7 @@
   {
     "user_id": 4,
     "post_text": "Ab voluptates omnis unde voluptas. Molestiae ipsam quis sapiente.\nProvident illum consectetur deserunt. Nisi vero minus non corrupti impedit.\nEaque dolor facilis iusto excepturi non. Sunt possimus modi animi.",
-    "network_id": 1,
+    "network_id": 0,
     "img_link": "https://www.lorempixel.com/231/204",
     "vid_link": "https://dummyimage.com/720x577",
     "post_date": "2017-07-29 18:52:43",
