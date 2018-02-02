@@ -109,8 +109,28 @@ def render_user_home_networks():
 	# TODO: incorporate paging into the user networks call.
 	user_networks = c.get_user_networks(user_id, count=5)
 	# TODO: construct network titles
+
+	titles = []
+	for network in user_networks:
+		title_template = "From %s, %s, %s in %s, %s, %s, that speak %s."
+		location_cur = network['location_cur']
+		city = c.get_city(location_cur['city_id'])['name']
+		region = c.get_region(location_cur['region_id'])['name']
+		country = c.get_country(location_cur['country_id'])['name']
+
+		location_origin = network['location_origin']
+		city_orig = c.get_city(location_origin['city_id'])['name']
+		region_orig = c.get_region(location_origin['region_id'])['name']
+		country_orig = c.get_country(location_origin['country_id'])['name']
+
+
+
+		language = network['language_origin']['name']
+		titles.append(title_template % (city_orig.title(), region_orig.title(), country_orig.title(),
+															      city.title(), region.title(), country.title(), language))
+
 	return render_template('home_networks.html', user=user,
-		user_networks=user_networks)
+		user_network_titles=titles)
 
 ##################### Error handling #########################
 

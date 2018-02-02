@@ -2,7 +2,7 @@
  * Styling for login page. 
  */
 
-body {
+html, body {
   background-color: #3c3c3c;
   margin: 0px 0px;
   display: flex;

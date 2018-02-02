@@ -5,14 +5,14 @@
   <div class="container-fluid">
     <div class="p-3 text-center">
       <h4>Your Networks</h2>
-        {% if user_networks|length == 0 %}
+        {% if user_network_titles|length == 0 %}
             You don't belong to any networks yet!
         {% else %}
-            {% for network in user_networks %}
+            {% for network_title in user_network_titles %}
               <div class="py-1 row">
                 <div class="p-2 cm-event-blurb">
                   <div class="text-center">
-                    {{ network }}
+                    {{ network_title }}
                   </div>
                 </div>
               </div>
