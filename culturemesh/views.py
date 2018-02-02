@@ -49,8 +49,14 @@ def login():
 
 @app.route("/search", methods=['GET', 'POST'])
 def render_search_page():
-	form = SearchForm()
-	return render_template('search.html', form=form)
+	if request.method == 'POST':
+		c = Client(mock=True)
+		data = request.form
+		networks = c.get_networks(10, max_id=None) # filter_=data)
+		return render_template('search_results.html', networks=networks)
+	else:
+		form = SearchForm()
+		return render_template('search.html', form=form)
 
 @app.route("/home")
 @app.route("/home/dashboard")
@@ -88,7 +94,7 @@ def render_user_home_events():
 	if events_hosting is None:
 		return page_not_found("")
 
-	return render_template('home_events.html', user=user, 
+	return render_template('home_events.html', user=user,
 		events_hosting=events_hosting)
 
 @app.route("/home/networks")
@@ -100,7 +106,7 @@ def render_user_home_networks():
 	if user is None:
 		return page_not_found("")
 
-	# TODO: incorporate paging into the user networks call. 
+	# TODO: incorporate paging into the user networks call.
 	user_networks = c.get_user_networks(user_id, count=5)
 	# TODO: construct network titles
 

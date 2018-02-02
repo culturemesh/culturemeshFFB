@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+  {% block content %}
+  <div class="container-fluid">
+    <div class="p-3 text-center">
+      <h4>Network Results</h4>
+        {% if networks|length == 0 %}
+            No matching networks found!
+        {% else %}
+            {% for network in networks %}
+              <div class="py-1 row">
+                  <div class="text-left">
+                    <h5>Network {{ network['location_cur']['city_id']}} </h5>
+                    Current Location: {{ network['location_cur']['city_id']}} <br>
+                    Origin Location: {{ network['location_origin']['city_id']}} <br>
+                    Language: {{ network['language_origin']['name'] }} <br>
+                    Number of Speakers: {{ network['language_origin']['num_speakers'] }} <br>
+                    <br>
+                  </div>
+              </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+  {% endblock %}
