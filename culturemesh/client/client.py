@@ -15,9 +15,10 @@ import os
 import json
 import datetime
 import config
+import culturemesh
 from culturemesh import app
 from difflib import SequenceMatcher
-
+from flask import abort
 from urllib.parse import urlparse
 from enum import IntEnum
 
@@ -33,7 +34,8 @@ LANG_DATA_LOC = os.path.join(app.root_path, "../data/mock/db_mock_languages.json
 CITY_DATA_LOC = os.path.join(app.root_path, "../data/mock/db_mock_location_cities.json")
 REGION_DATA_LOC = os.path.join(app.root_path, "../data/mock/db_mock_location_regions.json")
 COUNTRY_DATA_LOC = os.path.join(app.root_path, "../data/mock/db_mock_location_countries.json")
-
+KEY_LOC = os.path.join(app.root_path, "../data/KEY")
+KEY = open(KEY_LOC).readline().rstrip()
 class Request(IntEnum):
 	GET = 1
 	POST = 2
@@ -42,12 +44,12 @@ class Request(IntEnum):
 class Client(object):
 	""" Talks directly to CultureMesh """
 
-	_api_base_url_ = "www.culturemesh.com/api/v1/"
+	_api_base_url_ = "http://www.culturemesh.com/api-dev/v1"
 
 	def __init__(self, key=None, client_id=None, client_secret=None,
 				 timeout=None, connect_timeout=None, read_timeout=None,
 				 retry_timeout=60, queries_per_second=10,
-				 channel=None, mock=True):
+				 channel=None, mock=False):
 
 
 		# TODO: insert client initialization here.
@@ -66,7 +68,11 @@ class Client(object):
 		"""
 		if self.mock:
 			return self._mock_request(url, query_params, body_params)
-		raise NotImplementedError("Real API coming soon.")
+		url = "%s/%s?key=%s" % (self._api_base_url_, url, KEY)
+		print(url)
+		response = requests.get(url)
+
+		return self._get_body(response)
 
 	def _get_body(self, response):
 		"""
@@ -75,9 +81,9 @@ class Client(object):
 		Raises HTTPError exceptions.
 		"""
 		if response.status_code != 200:
-			raise culturemesh.exceptions.HTTPError(response.status_code)
+			abort(response.status_code)
 
-		return response.json()
+		return response.text
 
 	########################### MOCK DATA METHODS BELOW ##########################
 
@@ -591,7 +597,7 @@ class Client(object):
 
 
 """ Register the client with the API functions. """
-
+from .events import ping_event
 from .events import get_event
 from .events import get_event_registration_list
 from .events import create_event
@@ -602,11 +608,13 @@ from .locations import get_city
 from .locations import get_region
 from .locations import get_country
 from .locations import location_autocomplete
+from .posts import ping_post
 from .posts import get_post
 from .posts import get_post_replies
 from .posts import create_post
 from .posts import create_post_reply
 from .accounts import verify_account
+from .users import ping_user
 from .users import get_users
 from .users import get_user
 from .users import get_user_networks
@@ -616,6 +624,7 @@ from .users import create_user
 from .users import add_user_to_event
 from .users import add_user_to_network
 from .users import update_user
+from .networks import ping_network
 from .networks import get_networks
 from .networks import get_network
 from .networks import get_network_posts
@@ -625,6 +634,7 @@ from .networks import get_network_users
 # We may consider adding a wrapper around these assignments
 # below to introduce more specific features for the client.
 
+Client.ping_event = ping_event
 Client.get_event = get_event
 Client.get_event_registration_list = get_event_registration_list
 Client.create_event = create_event
@@ -635,11 +645,13 @@ Client.get_city = get_city
 Client.get_region = get_region
 Client.get_country = get_country
 Client.location_autocomplete = location_autocomplete
+Client.ping_post = ping_post
 Client.get_post = get_post
 Client.get_post_replies = get_post_replies
 Client.create_post = create_post
 Client.create_post_reply = create_post_reply
 Client.verify_account = verify_account
+Client.ping_user = ping_user
 Client.get_users = get_users
 Client.get_user = get_user
 Client.get_user_networks = get_user_networks
@@ -649,6 +661,7 @@ Client.create_user = create_user
 Client.add_user_to_event = add_user_to_event
 Client.add_user_to_network = add_user_to_network
 Client.update_user = update_user
+Client.ping_network = ping_network
 Client.get_networks = get_networks
 Client.get_network = get_network
 Client.get_network_posts = get_network_posts

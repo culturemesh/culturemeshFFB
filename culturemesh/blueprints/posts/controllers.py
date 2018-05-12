@@ -24,3 +24,9 @@ def render_post():
       username = c.get_user(reply["user_id"])["username"]
       usernames.append(username)
   return render_template('post.html', title=title, post=fake_post, replies=replies, reply_usernames=usernames, num_replies=num_replies)
+
+@posts.route("/ping")
+@flask_login.login_required
+def ping():
+  c = Client()
+  return c.ping_post()

@@ -20,7 +20,7 @@ def render_user_home():
 
   for event in events_hosting:
     utils.enhance_event_date_info(event)
-    
+
   return render_template('dashboard.html', user=user, events_hosting=events_hosting)
 
 @user_home.route("/account")
@@ -90,3 +90,9 @@ def render_user_home_networks():
     networks.append(network_)
 
   return render_template('networks.html', user=user, networks=networks)
+  
+@user_home.route("/ping")
+@flask_login.login_required
+def ping():
+  c = Client()
+  return c.ping_user()

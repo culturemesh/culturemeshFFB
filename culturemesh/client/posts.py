@@ -6,10 +6,14 @@ from .client import Request
 
 ####################### GET methods #######################
 
+def ping_post(client):
+    url = '/post/ping'
+    return client._request(url, Request.GET)
+
 def get_post(client, postId):
 	"""
 	:param client: the CultureMesh API client
-	:param postId: the id of the post to retrieve. 
+	:param postId: the id of the post to retrieve.
 
 	Returns the corresponding post JSON.
 	"""

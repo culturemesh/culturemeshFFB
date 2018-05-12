@@ -6,6 +6,10 @@
 
 from .client import Request
 
+def ping_user(client):
+    url = '/user/ping'
+    return client._request(url, Request.GET)
+
 def get_users(client, count, max_id=None, filter_=None):
 	"""
 	:param client: the CultureMesh API client
@@ -21,7 +25,7 @@ def get_users(client, count, max_id=None, filter_=None):
 	if max_id is not None:
 		query_params['max_id'] = max_id
 	url = '/users'
-	return client._request(url, Request.GET, body_params=params, 
+	return client._request(url, Request.GET, body_params=params,
 		query_params=query_params)
 
 def get_user(client, userId):
@@ -39,7 +43,7 @@ def get_user_networks(client, user_id, count, max_register_date=None):
 	:param client: the CultureMesh API client
 	:param user_id: The id of the user to return a list of networks for.
 	:param count: the number of results to return
-	:param max_register_date: the maximum network register date, inclusive, 
+	:param max_register_date: the maximum network register date, inclusive,
 														to return networks for.
 
 	Returns list of network JSONs to which USER_ID belongs.
@@ -92,7 +96,7 @@ def create_user(client, user):
 	"""
 	params = {"user": user}
 	url = '/user'
-	return client._request(url, Request.POST, body_params=params) 
+	return client._request(url, Request.POST, body_params=params)
 
 def add_user_to_event(client, userId, eventId):
 	"""
@@ -103,7 +107,7 @@ def add_user_to_event(client, userId, eventId):
 	Registers a user to a attend an event.
 	"""
 	url = '/user/%s/addToEvent/%s' % (str(userId), str(eventId))
-	return client._request(url, Request.POST) 
+	return client._request(url, Request.POST)
 
 def add_user_to_network(client, userId, networkId):
 	"""
@@ -114,7 +118,7 @@ def add_user_to_network(client, userId, networkId):
 	Adds a user to a network.
 	"""
 	url = '/user/%s/addToNetwork/%s' % (str(userId), str(networkId))
-	return client._request(url, Request.POST) 
+	return client._request(url, Request.POST)
 
 ####################### PUT methods #######################
 
@@ -129,4 +133,4 @@ def update_user(client, user):
 
 	raise NotImplementedError
 	url = '/user'
-	return client._request(url, Request.PUT, body_params=params) 
+	return client._request(url, Request.PUT, body_params=params)

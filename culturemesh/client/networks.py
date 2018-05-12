@@ -6,6 +6,9 @@
 
 from .client import Request
 
+def ping_network(client):
+    url = '/network/ping'
+    return client._request(url, Request.GET)
 
 def get_networks(client, count, max_id=None, filter_=None):
     """

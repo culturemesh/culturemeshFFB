@@ -6,6 +6,10 @@ from .client import Request
 
 ####################### GET methods #######################
 
+def ping_event(client):
+    url = '/event/ping'
+    return client._request(url, Request.GET)
+
 def get_event(client, eventId):
 	"""
 	:param client: the CultureMesh API client
@@ -31,7 +35,7 @@ def get_event_registration_list(client, eventId, count, max_register_date=None):
 	if max_register_date is not None:
 		query_params['max_register_date'] = max_register_date
 
-	# TODO: need to URL escape the query parameters with spaces. 
+	# TODO: need to URL escape the query parameters with spaces.
 	return client._request(url, Request.GET, query_params=query_params)
 
 ####################### POST methods #######################

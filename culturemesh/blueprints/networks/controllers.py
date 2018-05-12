@@ -154,7 +154,7 @@ def network_posts() :
     except ValueError:
       return render_template('404.html')
     posts = c.get_network_posts(network_id, 10, old_index - 1)
- 
+
   posts = posts[::-1]
   for post in posts:
     post['username'] = c.get_user(post['user_id'])['username']
@@ -189,3 +189,9 @@ def network_posts() :
     network_info['network_title'] = network_title
 
   return render_template('network_posts.html', network_info=network_info, post_index=post_index)
+
+@networks.route("/ping")
+@flask_login.login_required
+def ping():
+    c = Client()
+    return c.ping_network()
