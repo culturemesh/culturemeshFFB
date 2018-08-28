@@ -7,23 +7,6 @@ This section will get you up and running with CultureMesh FFB.
 .. _getting-started:
 
 Getting Started
-===============
-
-CultureMesh FFB is a project to bring CultureMesh to the Facebook
-Free Basics platform.  Facebook Free Basics (FFB) is an initiative at Facebook
-that provides free light weight (no JavaScript, no large images, etc. )
-web services to as many cellphones around the world as possible.
-CultureMesh FFB is a Python-Flask web app.
-
-Because the intended audience for this service may not be very technically
-inclined, it is very important to design the site and it's functions to be
-as straightforward as possible.
-
-It is equally important to keep in mind that the site is to use **NO JAVASCRIPT**,
-and that it will benefit from being as light (in memory and computation)
-as possible. Please keep this in mind as you contribute to the project.
-
-Running Locally
 ---------------
 
 All our code (save secrets) lives
