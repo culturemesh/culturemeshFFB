@@ -18,6 +18,9 @@ from culturemesh.blueprints.networks.forms.network_forms import NetworkLeaveForm
 
 from culturemesh.blueprints.networks.utils import gather_network_info
 
+
+#just adding this comment to test git
+
 networks = Blueprint('networks', __name__, template_folder='templates')
 utc=pytz.UTC
 
@@ -366,4 +369,3 @@ def leave():
 def ping():
     c = Client(mock=False)
     return c.ping_network()
-
