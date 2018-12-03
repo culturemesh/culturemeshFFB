@@ -16,12 +16,12 @@ import http.client as httplib
 posts = Blueprint('posts', __name__, template_folder='templates')
 
 @posts.route("/", methods=['GET', 'POST'])
-@flask_login.login_required
+#@flask_login.login_required
 def render_post():
 
   current_post_id = safe_get_query_arg(request, 'id')
 
-  user_id = current_user.id
+  user_id = current_user.get_id()
   c = Client(mock=False)
   post = c.get_post(current_post_id)
 
@@ -41,6 +41,10 @@ def render_post():
 
   if request.method == 'GET':
     pass
+  elif user_id == None:
+    return redirect(
+        url_for('render_login_page')
+    )
   else:
     data = request.form
     form_submitted = CreatePostReplyForm(request.form)
