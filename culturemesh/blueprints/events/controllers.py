@@ -24,7 +24,7 @@ def ping():
   return c.ping_event()
 
 @events.route("/")
-@login_required
+#@login_required
 def render_event():
     current_event_id = request.args.get('id')
     c = Client(mock=False)
@@ -40,20 +40,21 @@ def render_event():
 
     role = None
 
-    if event['id_host'] == current_user.id:
+    if not current_user.is_anonymous:
+        if event['id_host'] == current_user.id:
 
-      # The current user is hosting this event.
-      role = 'hosting'
-      host['username'] = 'you'
+          # The current user is hosting this event.
+          role = 'hosting'
+          host['username'] = 'you'
 
-    elif user_is_attending_event(c, current_user.id, event):
+        elif user_is_attending_event(c, current_user.id, event):
 
-      # The current user is already signed up for this event.
-      role = 'attending'
-    else:
+          # The current user is already signed up for this event.
+          role = 'attending'
+        else:
 
-      # The current user is not signed up for this event.
-      pass
+          # The current user is not signed up for this event.
+          pass
 
     return render_template(
       'event.html',

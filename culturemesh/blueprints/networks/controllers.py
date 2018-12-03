@@ -25,13 +25,12 @@ networks = Blueprint('networks', __name__, template_folder='templates')
 utc=pytz.UTC
 
 @networks.route("/")
-@flask_login.login_required
 def network():
   id_network = request.args.get('id')
   c = Client(mock=False)
-  id_user = current_user.id
-  network_info = gather_network_info(id_network, id_user, c)
 
+  id_user = current_user.get_id()
+  network_info = gather_network_info(id_network, id_user, c)
   upcoming_events = get_upcoming_events_by_network(c, id_network, 3)
 
   return render_template(
@@ -57,7 +56,6 @@ def join_network():
   )
 
 @networks.route("/events/")
-@flask_login.login_required
 def network_events() :
   # TODO: A lot of this code is repeated from network(), with just minor variations.
   # This should be factored out.
@@ -96,13 +94,15 @@ def network_events() :
     utils.enhance_event_date_info(event)
     event['num_registered'] = c.get_event_reg_count(event['id'])['reg_count']
 
-  id_user = current_user.id
-  user_networks = c.get_user_networks(id_user, count=100)
+  id_user = current_user.get_id()
   user_is_member = False
-  for network_ in user_networks:
-    if int(id_network) == int(network_['id']):
-      user_is_member = True
-      break
+
+  if not id_user == None:
+      user_networks = c.get_user_networks(id_user, count=100)
+      for network_ in user_networks:
+        if int(id_network) == int(network_['id']):
+          user_is_member = True
+          break
 
   network_info = {}
   network_info['id'] = id_network
@@ -124,7 +124,6 @@ def network_events() :
   )
 
 @networks.route("/posts/")
-@flask_login.login_required
 def network_posts() :
   # TODO: A lot of this code is repeated from network(), with just minor variations.
   # This should be factored out.
@@ -168,13 +167,14 @@ def network_posts() :
   else :
     post_index = posts[-1]['id']
 
-  id_user = current_user.id
-  user_networks = c.get_user_networks(id_user, count=100)
+  id_user = current_user.get_id()
   user_is_member = False
-  for network_ in user_networks:
-    if int(id_network) == int(network_['id']):
-      user_is_member = True
-      break
+  if id_user is not None:
+      user_networks = c.get_user_networks(id_user, count=100)
+      for network_ in user_networks:
+        if int(id_network) == int(network_['id']):
+          user_is_member = True
+          break
 
   network_info = {}
   network_info['id'] = id_network
