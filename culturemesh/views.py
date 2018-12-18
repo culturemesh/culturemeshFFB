@@ -83,6 +83,8 @@ def register():
       'last_name': lastname,
       'email': email,
       'role': '0',
+      'about_me': '',
+      'gender': '',
       'act_code': 'NULL' # TODO: what to do here?
     }
 

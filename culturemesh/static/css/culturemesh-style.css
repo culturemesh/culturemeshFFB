@@ -75,13 +75,24 @@ body {
 }
 
 #stage-title{
-  color: white;
+  color: #e07700;
   font-size:30px;
   font-family: 'Lato-bold', sans-serif;
   font-weight: 20;
   letter-spacing:1px;
   text-shadow: -1px 0 #6e6e6e, 0 1px #6e6e6e, 1px 0 #6e6e6e, 0 -1px #6e6e6e;
   text-shadow: horizontal-offset vertical-offset blur #6e6e6e;
+}
+
+#title-header {
+  font-size:20px;
+  color: #e07700;
+}
+
+#title-description {
+  color: black;
+  font-size:15px;
+
 }
 
 /* Add a background color on hover */

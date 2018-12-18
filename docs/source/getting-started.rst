@@ -27,53 +27,99 @@ Running Locally
 ---------------
 
 All our code (save secrets) lives
-on `GitHub <https://github.com/alanefl/culturemeshFFB>`_.
+on `GitHub <https://github.com/Code-The-Change/culturemeshFFB>`_.
 
 Follow these steps to run the website locally.
 
-0. Get the code -- choose a directory and run
+#. Get the code -- choose a directory and run
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ git clone https://github.com/alanefl/culturemeshFFB
+      $ git clone https://github.com/Code-The-Change/culturemeshFFB
 
-1. Then you need to install dependencies
+#. Install python from https://python.org or via your favorite package manager
 
-.. code-block:: console
+#. Install ``virtualenv``
 
-  $ cd culturemeshFFB
-  $ virtualenv .env
-  $ source .env/bin/activate
-  $ pip install -r requirements.txt
+    .. code-block:: console
 
-2. You also need to set some required environment variables
-  (see :ref:`env-vars`)
+      $ pip3 install virtualenv
 
-.. code-block:: console
+#. If you get a note from ``pip`` about ``virtualenv`` not being in your
+   ``PATH``, you need to perform this step. ``PATH`` is a variable accessible
+   from any bash terminal you run, and it tells bash where to look for the
+   commands you enter. It is a list of directories separated by ``:``. You can
+   see yours by running ``echo $PATH``. To run ``virtualenv`` commands, you need
+   to add python's packages to your ``PATH`` by editing or creating the file
+   ``~/.bash_profile`` on MacOS. To that file add the following lines:
 
-  $ export WTF_CSRF_SECRET_KEY=...
-  $ export CULTUREMESH_API_KEY=...
+    .. code-block:: console
 
-3. Start the Flask App.
+      PATH="<Path from pip message>:$PATH"
+      export PATH
 
-.. code-block:: console
+#. Then you can install dependencies into a virtual environment
 
-  $ python -u run.py
+    .. code-block:: console
+
+      $ cd culturemeshFFB
+      $ virtualenv .env
+      $ source .env/bin/activate
+      $ pip install -r requirements.txt
+
+#. You also need to set some required environment variables
+   (see :ref:`env-vars`)
+
+    .. code-block:: console
+
+      $ export WTF_CSRF_SECRET_KEY=...
+      $ export CULTUREMESH_API_KEY=...
+
+#. Start the Flask App.
+
+    .. code-block:: console
+
+      $ python -u run.py
+
+As an alternative to combine the above two steps, you can create a simple bash
+script to set the environment variables and start up the app for you. To do so,
+create a file ``run.sh`` with the following contents, filling in the missing
+information:
+
+    .. code-block:: bash
+
+        #!/usr/bin/env bash
+
+        export CULTUREMESH_API_KEY=<API Key>
+        export WTF_CSRF_SECRET_KEY=<CSRF Secret>
+        export CULTUREMESH_API_BASE_ENDPOINT=<API Base>
+
+        python -u run.py
+
+Then make the app executable:
+
+    .. code-block:: console
+
+        chmod 700 run.sh
+
+Whenever you want to start the app, just execute the script:
+
+    .. code-block:: console
+
+        ./run.sh
 
 You'll see something like this on the terminal:
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ python run.py
-   * Restarting with stat
-   * Debugger is active!
-   * Debugger PIN: 202-914-549
-   * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+      $ python run.py
+       * Restarting with stat
+       * Debugger is active!
+       * Debugger PIN: 202-914-549
+       * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
 
 You can then head over to your browser and type in ```http://127.0.0.1:8080/```
 on the address bar.
-
-.. note::
 
 .. note:: By default, the website (even if running locally) really
   communicates with the live CultureMesh API.  However, the CultureMesh API
@@ -94,38 +140,38 @@ which you push and submit a pull request for:
 
 1. Install dependencies
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ cd culturemeshFFB
-  $ virtualenv .env
-  $ source .env/bin/activate
-  $ pip install -r requirements.txt
+      $ cd culturemeshFFB
+      $ virtualenv .env
+      $ source .env/bin/activate
+      $ pip install -r requirements.txt
 
 2. Create a new branch
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ git checkout -b my-new-branch
+      $ git checkout -b my-new-branch
 
 3. Set environment variables (see :ref:`env-vars`)
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ export WTF_CSRF_SECRET_KEY=...
-  $ export CULTUREMESH_API_KEY=...
+      $ export WTF_CSRF_SECRET_KEY=...
+      $ export CULTUREMESH_API_KEY=...
 
 4. Make some awesome commits
 
 5. Push the branch:
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ git push -u origin my-new-branch
+      $ git push -u origin my-new-branch
 
 6. Make sure there are no merge conflicts with master
 7. Submit a pull request.
 
-  .. warning:: When opening the Pull Request choose the ``alanefl``
+  .. warning:: When opening the Pull Request choose the ``Code-The-Change``
     base fork, not ``ericshong``'s
 
 8. Select your reviewers
@@ -138,10 +184,10 @@ is green.
 
 10. Update your local master branch and delete the old one
 
-.. code-block:: console
+    .. code-block:: console
 
-  $ git checkout master && git pull
-  $ git branch -d my-new-branch
+      $ git checkout master && git pull
+      $ git branch -d my-new-branch
 
 CultureMesh FFB is a Python-Flask webapp. I will not go into the details of
 the Flask microframework (blueprints, templates, routes, etc.)

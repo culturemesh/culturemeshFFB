@@ -41,4 +41,10 @@ Add unit tests for ``culturemesh/path/to/file.py`` at
 Integration Tests
 -----------------
 
-There are currently no integration tests for CultureMesh FFB.
+There are currently no integration tests for CultureMesh FFB. There are,
+however, tools to make live debugging easier. For example, if you want to check
+that the server has registered code changes and is serving the latest your
+changes, you can use the ``/dev/note`` endpoint. This endpoint serves the
+contents of the template ``note.html``, which you can change to display
+custom text. If that new text is displayed at that endpoint, you know the
+server has updated to reflect your changes.

@@ -1,7 +1,6 @@
 #
 # CultureMesh Posts API
 #
-
 from .client import Request
 
 ####################### GET methods #######################
