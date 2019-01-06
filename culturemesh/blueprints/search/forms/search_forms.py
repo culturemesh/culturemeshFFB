@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, RadioField
 from wtforms.validators import DataRequired
 
 class SearchForm(FlaskForm):
-    search_type = SelectField(
+    search_type = RadioField(
         'Search Type',
         choices=[('language', 'speak'), ('location', 'are from')]
     )
