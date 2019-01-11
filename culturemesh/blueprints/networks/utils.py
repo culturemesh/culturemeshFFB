@@ -19,7 +19,7 @@ def gather_network_info(id_network, id_user, client, scenario="normal"):
     post['time_ago'] = get_time_ago(post['post_date'])
 
   user_is_member = False
-  if id_user is not None:
+  if not id_user == None:
       user_networks = client.get_user_networks(id_user, count=100)
       for network_ in user_networks:
         if int(id_network) == int(network_['id']):
