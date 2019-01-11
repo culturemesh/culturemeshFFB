@@ -92,7 +92,6 @@ def network_events() :
     utils.enhance_event_date_info(event)
     event['num_registered'] = c.get_event_reg_count(event['id'])['reg_count']
 
-  #id_user = current_user.get_id()
   user_is_member = False
 
   if is_logged_in(current_user):
@@ -165,7 +164,6 @@ def network_posts() :
   else :
     post_index = posts[-1]['id']
 
-  #id_user = current_user.get_id()
   user_is_member = False
   if is_logged_in(current_user):
       user_networks = c.get_user_networks(current_user.get_id(), count=100)
