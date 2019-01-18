@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Inspired by RJ Zaworski's blog post at
+# https://rjzaworski.com/2018/01/keeping-git-hooks-in-sync
+
 set -e
 
 install_hooks() {
