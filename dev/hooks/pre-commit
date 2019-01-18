@@ -1,1 +1,6 @@
 #!/usr/bin/env bash
+
+# Pre-commit hook to run before each commit
+
+# Check that no secrets are about to be committed
+git secrets scan
