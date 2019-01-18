@@ -9,6 +9,7 @@ from culturemesh.client import Client
 from culturemesh.utils import get_network_title
 from culturemesh.utils import get_upcoming_events_by_network
 from culturemesh.utils import get_time_ago
+from culturemesh.utils import is_logged_in
 from utils import parse_date
 
 from culturemesh.blueprints.networks.forms.network_forms import NetworkJoinForm
@@ -17,9 +18,6 @@ from culturemesh.blueprints.networks.forms.network_forms import CreateEventForm
 from culturemesh.blueprints.networks.forms.network_forms import NetworkLeaveForm
 
 from culturemesh.blueprints.networks.utils import gather_network_info
-
-
-#just adding this comment to test git
 
 networks = Blueprint('networks', __name__, template_folder='templates')
 utc=pytz.UTC
@@ -94,11 +92,10 @@ def network_events() :
     utils.enhance_event_date_info(event)
     event['num_registered'] = c.get_event_reg_count(event['id'])['reg_count']
 
-  id_user = current_user.get_id()
   user_is_member = False
 
-  if not id_user == None:
-      user_networks = c.get_user_networks(id_user, count=100)
+  if is_logged_in(current_user):
+      user_networks = c.get_user_networks(current_user.get_id(), count=100)
       for network_ in user_networks:
         if int(id_network) == int(network_['id']):
           user_is_member = True
@@ -167,10 +164,9 @@ def network_posts() :
   else :
     post_index = posts[-1]['id']
 
-  id_user = current_user.get_id()
   user_is_member = False
-  if id_user is not None:
-      user_networks = c.get_user_networks(id_user, count=100)
+  if is_logged_in(current_user):
+      user_networks = c.get_user_networks(current_user.get_id(), count=100)
       for network_ in user_networks:
         if int(id_network) == int(network_['id']):
           user_is_member = True

@@ -112,7 +112,7 @@ def update_profile_and_render_home():
     'id': user_id, 'first_name': first_name,
     'last_name': last_name, 'about_me': about_me
   }
-   
+
   if form.validate():
     c.update_user(current_user, user)
 
