@@ -30,7 +30,7 @@ from culturemesh.utils import email_registered, username_taken
 @app.route("/")
 @app.route("/index/")
 def home():
-	return render_template('index.html')
+	return render_template('index.html',  msg=LOGIN_MSG, form=LoginForm())
 
 @app.route("/about/")
 def about():
