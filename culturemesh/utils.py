@@ -304,3 +304,6 @@ def user_is_attending_event(client, user_id, event):
     if user_id == reg['id_guest']:
       return True
   return False
+
+def is_logged_in(current_user):
+    return current_user.get_id() != None
