@@ -21,3 +21,16 @@ def test_landing(client):
 def test_landing_aliases(client):
     landing = client.get("/")
     assert client.get("/index/").data == landing.data
+
+
+def test_about(client):
+    about = client.get('/about/')
+    html = about.data.decode()
+
+    print(html)
+    assert 'About CultureMesh' in html
+    assert 'CultureMesh is building networks to match the' in html
+    assert 'Ken Chester' in html
+    assert 'img src="https://www.culturemesh.com/internal/team/Ken_Chester.jpg"' in html
+
+    assert about.status_code == 200
