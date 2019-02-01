@@ -36,6 +36,7 @@ __pycache__/
 ######################
 instance/
 .idea
+.coverage
 
 # Virtual environment #
 #######################
@@ -53,5 +54,6 @@ bin/run-debug.sh
 credentials*
 run.sh
 
-.idea
+# System Files #
+################
 .DS_Store
