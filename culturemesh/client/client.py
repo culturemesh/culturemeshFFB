@@ -15,6 +15,7 @@ import os
 import json
 import datetime
 import config
+from random import randrange
 import culturemesh
 from culturemesh import app
 from difflib import SequenceMatcher
@@ -140,6 +141,8 @@ class Client(object):
 					return self._mock_get_networks(
 						query_params, body_params
 					)
+				elif path[1] == 'popular':
+					return self._mock_get_random_networks(query_params)
 				else:
 					network_id = int(path[1])
 					return self._mock_get_network(network_id)
@@ -429,6 +432,16 @@ class Client(object):
 				networks = sorted(networks, key=lambda x: x['search_rank'], reverse=True)
 			return networks
 
+	def _mock_get_random_networks(self, query_params):
+		num_nets = query_params['count']
+		nets = []
+		with open(NETWORK_DATA_LOC) as networks:
+			networks = json.load(networks)
+			while len(nets) < num_nets and len(nets) < len(networks):
+				i = randrange(0, len(networks))
+				if networks[i] not in nets:
+					nets.append(networks[i])
+		return nets
 
 	def _mock_get_network(self, network_id):
 		"""
@@ -661,6 +674,7 @@ from .networks import get_network_events
 from .networks import get_network_users
 from .networks import get_network_user_count
 from .networks import get_network_post_count
+from .networks import get_popular_networks
 
 # We may consider adding a wrapper around these assignments
 # below to introduce more specific features for the client.
@@ -712,3 +726,4 @@ Client.get_network_events = get_network_events
 Client.get_network_users = get_network_users
 Client.get_network_user_count = get_network_user_count
 Client.get_network_post_count = get_network_post_count
+Client.get_popular_networks = get_popular_networks

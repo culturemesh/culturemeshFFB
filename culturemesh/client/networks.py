@@ -6,9 +6,11 @@ from .client import Request
 
 ####################### GET methods #######################
 
+
 def ping_network(client):
     url = 'network/ping'
     return client._request(url, Request.GET)
+
 
 def get_networks(client,
                  count,
@@ -98,6 +100,7 @@ def get_network_users(client, networkId, count, max_id=None):
         query_params['max_id'] = max_id
     return client._request(url, Request.GET, query_params=query_params)
 
+
 def get_network_user_count(client, networkId):
     """
     :param client: the CultureMesh API client
@@ -108,6 +111,7 @@ def get_network_user_count(client, networkId):
     url = 'network/%s/user_count' % str(networkId)
     return client._request(url, Request.GET)
 
+
 def get_network_post_count(client, networkId):
     """
     :param client: the CultureMesh API client
@@ -117,6 +121,18 @@ def get_network_post_count(client, networkId):
     """
     url = 'network/%s/post_count' % str(networkId)
     return client._request(url, Request.GET)
+
+
+def get_popular_networks(client, numNets):
+    """Get a list of popular networks
+
+    :param client: the CultureMesh API client
+    :param numNets: The number of networks to include. Must be in (0, 30]
+    :return: List of networks as JSON
+    """
+    url = 'network/popular'
+    query_params = {'count': numNets}
+    return client._request(url, Request.GET, query_params=query_params)
 
 ####################### POST methods #######################
 ####################### PUT methods #######################
