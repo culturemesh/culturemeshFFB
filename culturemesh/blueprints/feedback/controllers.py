@@ -19,9 +19,7 @@ def ping():
 
 @feedback.route("/", methods=['GET', 'POST'])
 def render_feedback_form():
-    print("0")
     if(request.method == 'POST'):
-        print("1")
         feedback = request.form
         print("2")
         form_submitted = FeedbackForm(request.form)
