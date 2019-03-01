@@ -1,0 +1,70 @@
+{% extends "dashboard.html" %}
+
+  {% block dashboard_content %}
+    <div class="col">
+      <div class="py-3 container-fluid">
+        <div class="cm-account-section">
+          <div class="row p-3">
+            <div class="col text-center">
+              <i id="cm-icon" class="fas fa-cog fa-3x"></i>
+            </div>
+            <div class="col-8 my-auto">
+              <h4>Edit Profile</h4>
+            </div>
+          </div>
+
+          <div class="cm-center-row px-2 py-2">
+            <div class="wrapper container-fluid">
+              <form action="/home/update_profile/" method="POST">
+
+                {{ user_info_form.hidden_tag() }}
+
+                <input type="hidden" name="id" value="{{ user['id'] }}">
+
+                <div class="cm-regular-font-small">
+
+                  <fieldset class="pt-3">
+                    <label><strong>First Name</strong></label>
+                      {{ user_info_form.first_name(
+                            size=32,
+                            placeholder="Your first name",
+                            class_="p-2 form-control cm-text-input-field"
+                          )
+                      }}
+                  </fieldset>
+
+                  <fieldset class="pt-3">
+                    <label><strong>Last Name</strong></label>
+                      {{ user_info_form.last_name(
+                            size=32,
+                            placeholder="Your last name",
+                            class_="p-2 form-control cm-text-input-field"
+                          )
+                      }}
+                  </fieldset>
+
+                  <fieldset class="pt-3">
+                    <label><strong>About</strong></label>
+                      {{ user_info_form.about_me(
+                            size=150,
+                            cols="35", rows="4",
+                            placeholder="Tell us something about yourself",
+                            class_="p-2 form-control cm-text-input-field"
+                          )
+                       }}
+                  </div>
+
+                  <fieldset class="p-4">
+                    {{ user_info_form.submit(
+                            class_="cm-submit-btn"
+                        )
+                    }}
+                  </fieldset>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endblock %}

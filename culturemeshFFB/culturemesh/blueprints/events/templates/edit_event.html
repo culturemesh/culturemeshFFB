@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% from "macros.html" import error_blurb %}
+
+{% block content %}
+
+  <div class="wrapper container-fluid pt-3">
+    <div class="cm-blurb">
+      <div class="container-fluid">
+        <div class="pt-3 px-3 row">
+          <p>Edit your <strong>event</strong> in network: </p>
+        </div>
+        <div class="row pb-3">
+          <div class="col-1">
+            <a href="/network/?id={{ id_network }}" class="hidden-link">
+              <i id="cm-icon" class="fas fa-users"></i>
+            </a>
+          </div>
+          <div class="col">
+            <a href="/network/?id={{ id_network }}" class="hidden-link">
+              <span class="cm-light-font-small">{{ network_title }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if error_msg %}
+      {{ error_blurb(error_msg) }}
+    {% endif %}
+
+  </div>
+
+  <div class="wrapper container-fluid">
+    <form action="" method="POST">
+      <div class="cm-create-event-div text-left cm-regular-font-small">
+
+        {{ edit_event_form.hidden_tag() }}
+
+        <fieldset class="pt-3">
+          <label><strong>Event Name</strong></label>
+          {{ edit_event_form.title(
+              placeholder="Add a short name for your event",
+              class_="p-2 form-control cm-text-input-field"
+            )
+          }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>Country</strong></label>
+            {{ edit_event_form.country(
+                placeholder="Add a country for your event",
+                class_="p-2 form-control cm-text-input-field"
+              )
+            }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>Region/State</strong></label>
+            {{ edit_event_form.region(
+                placeholder="Add a region or state (optional)",
+                class_="p-2 form-control cm-text-input-field"
+              )
+            }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>City</strong></label>
+            {{ edit_event_form.city(
+                placeholder="Add a city (optional)",
+                class_="p-2 form-control cm-text-input-field"
+              )
+            }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>Address 1</strong></label>
+            {{ edit_event_form.address_1(
+                placeholder="Add an address for your event",
+                class_="p-2 form-control cm-text-input-field"
+              )
+            }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>Address 2</strong></label>
+            {{ edit_event_form.address_2(
+                placeholder="Add a secondary address (optional)",
+                class_="p-2 form-control cm-text-input-field"
+              )
+            }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>Date/Time</strong></label>
+          <p class="cm-small-note">e.g. 2019-01-01 16:30</p>
+          {{ edit_event_form.event_date(
+                placeholder="yyyy-mm-dd hh:mm",
+                class_="p-2 form-control cm-text-input-field"
+              )
+          }}
+        </fieldset>
+
+        <fieldset class="pt-3">
+          <label><strong>Description</strong></label>
+            {{ edit_event_form.description(
+                rows="4",
+                placeholder="Tell others what this event is about",
+                class_="form-control cm-text-input-field"
+              )
+            }}
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="row py-2">
+          {{ edit_event_form.submit(
+              id="cm-event-create-button",
+              class_="my-2 btn btn-secondary btn-sm pr-3"
+             )
+          }}
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+{% endblock %}

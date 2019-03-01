@@ -1,0 +1,26 @@
+[
+  {
+    "id_guest": 1,
+    "id_event": 1,
+    "date_registered": "2017-12-12 08:53:43",
+    "job": "Job of user 1"
+  },
+  {
+    "id_guest": 1,
+    "id_event": 4,
+    "date_registered": "2017-12-12 02:53:43",
+    "job": "Job of user 1"
+  },
+  {
+    "id_guest": 4,
+    "id_event": 2,
+    "date_registered": "2017-12-11 08:53:43",
+    "job": "Job of user 4"
+  },
+  {
+    "id_guest": 3,
+    "id_event": 2,
+    "date_registered": "2017-12-05 08:53:43",
+    "job": "Job of user 3"
+  }
+]

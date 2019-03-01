@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "id_parent": 1,
+    "id_user": 2,
+    "id_network": 2,
+    "reply_date": "2017-03-12 08:53:43",
+    "reply_text": "Test reply 1."
+  },
+  {
+    "id": 2,
+    "id_parent": 1,
+    "id_user": 3,
+    "id_network": 2,
+    "reply_date": "2017-03-13 08:53:43",
+    "reply_text": "Test reply 2."
+  },
+  {
+    "id": 3,
+    "id_parent": 3,
+    "id_user": 4,
+    "id_network": 1,
+    "reply_date": "2017-04-04 18:27:27",
+    "reply_text": "Test reply 3."
+  },
+  {
+    "id": 4,
+    "id_parent": 4,
+    "id_user": 4,
+    "id_network": 1,
+    "reply_date": "2017-04-05 12:23:22",
+    "reply_text": "Test reply 4."
+  },
+  {
+    "id": 5,
+    "id_parent": 5,
+    "id_user": 4,
+    "id_network": 1,
+    "reply_date": "2017-05-12 05:47:33",
+    "reply_text": "Test reply 5."
+  }
+]

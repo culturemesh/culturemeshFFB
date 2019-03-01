@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "macros.html" import error_blurb %}
+{% block content %}
+
+  <!-- Post text and blurb -->
+  <div class="wrapper container-fluid pt-3">
+    <div class="cm-blurb">
+      <div class="container-fluid">
+        <div class="row py-3">
+          <div class="col-1">
+            <a href="/network/?id={{ id_network }}" class="hidden-link">
+              <i id="cm-icon" class="fas fa-users"></i>
+            </a>
+          </div>
+          <div class="col">
+            <a href="/network/?id={{ id_network }}" class="hidden-link">
+              <span class="cm-light-font-small">{{ network_info['network_title'] }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-3 text-center">
+    <div class="cm-blurb px-3 py-3">
+      {% if network_info['user_is_member'] %}
+        <div class="row p-2">
+          <p>
+            {{ network_info['greeting'] }}
+          </p>
+        </div>
+      {% else %}
+        <div class="row p-2">
+          <p>
+            {{ network_info['greeting'] }}
+          </p>
+        </div>
+        <form action="/network/join/?id={{ network_info['id'] }}"
+              method="POST"
+              class="text-center">
+          {{ form.hidden_tag() }}
+          {{ form.submit(
+                id="cm-join-network-button",
+                class_="my-2 btn btn-secondary btn-sm pr-3"
+              )
+          }}
+        </form>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

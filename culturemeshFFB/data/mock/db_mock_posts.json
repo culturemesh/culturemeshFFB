@@ -1,0 +1,57 @@
+[
+  {
+    "id_user": 4,
+    "post_text": "Ex excepturi quos vero nesciunt autem. Ipsum voluptates quaerat rerum praesentium modi.\nEos culpa fuga maxime atque exercitationem nemo. Repellendus officiis et. Explicabo eveniet quibusdam magnam minima.",
+    "id_network": 2,
+    "img_link": "https://www.lorempixel.com/370/965",
+    "vid_link": "https://dummyimage.com/803x720",
+    "post_date": "2017-02-12 08:53:43",
+    "post_class": 0,
+    "id": 1,
+    "post_original": "Not sure what this field is"
+  },
+  {
+    "id_user": 3,
+    "post_text": "Minus cumque corrupti porro natus tenetur delectus illum. Amet aut molestias eaque autem ea odio.\nAsperiores sed officia. Similique accusantium facilis sed. Eligendi tempora nisi sint tempora incidunt perferendis.",
+    "id_network": 2,
+    "img_link": "https://www.lorempixel.com/556/586",
+    "vid_link": "https://dummyimage.com/909x765",
+    "post_date": "2017-02-01 05:49:35",
+    "post_class": 0,
+    "id": 2,
+    "post_original": "Not sure what this field is"
+  },
+  {
+    "id_user": 1,
+    "post_text": "Veritatis illum occaecati est error magni nesciunt. Voluptate cum odio voluptatum quasi natus. Illo vel tempora pariatur tempore.",
+    "id_network": 1,
+    "img_link": "https://dummyimage.com/503x995",
+    "vid_link": "https://dummyimage.com/796x497",
+    "post_date": "2017-04-03 18:27:27",
+    "post_class": 0,
+    "id": 3,
+    "post_original": "Not sure what this field is"
+  },
+  {
+    "id_user": 3,
+    "post_text": "Dolorem ad ducimus laboriosam veritatis id quam rerum. Nostrum voluptatum mollitia modi.\nVoluptas aut mollitia in perferendis blanditiis eaque eius. Recusandae similique ratione perspiciatis assumenda.",
+    "id_network": 2,
+    "img_link": "https://placeholdit.imgix.net/~text?txtsize=55&txt=917x558&w=917&h=558",
+    "vid_link": "https://www.lorempixel.com/1016/295",
+    "post_date": "2016-08-29 15:27:28",
+    "post_class": 0,
+    "id": 4,
+    "post_original": "Not sure what this field is"
+  },
+  {
+    "id_user": 4,
+    "post_text": "Ab voluptates omnis unde voluptas. Molestiae ipsam quis sapiente.\nProvident illum consectetur deserunt. Nisi vero minus non corrupti impedit.\nEaque dolor facilis iusto excepturi non. Sunt possimus modi animi.",
+    "id_network": 1,
+    "img_link": "https://www.lorempixel.com/231/204",
+    "vid_link": "https://dummyimage.com/720x577",
+    "post_date": "2017-07-29 18:52:43",
+    "post_class": 0,
+    "id": 5,
+    "post_original": "Not sure what this field is"
+  }
+]

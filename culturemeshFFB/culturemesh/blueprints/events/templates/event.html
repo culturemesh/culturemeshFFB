@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% block content %}
+<div class="p-3 container-fluid">
+    <div class="row">
+        <div class="col-8 no-padding">
+            <h4>{{ event['title'] }}</h4>
+        </div>
+        <div class="col-4 text-right">
+          {% if curr_user_id|string() == event['id_host']|string() %}
+          <a href="edit/?id={{event['id']}}" class="hidden-link">
+              <i id="cm-icon" class="far fa-edit"></i>
+          </a>
+          {% endif %}
+        </div>
+    </div>
+    <div class="py-1 row">
+        <div id="cm-event-blurb">
+            Hosted by <strong>{{ host['username'] }}</strong> |
+            {{ event['location'] }}
+        </div>
+    </div>
+    <div class="my-2 py-1 row">
+        <div class="cm-blurb p-2">
+            <div class="container-fluid">
+                <div class="row py-3">
+                    <div class="col-1">
+                        <i id="cm-icon" class="fas fa-users"></i>
+                    </div>
+                    <div class="col">
+                        <a href="/network/?id={{ event['id_network'] }}" class="hidden-link">
+                          <span class="cm-regular-font-med">Network</span> <br/>
+                          <span class="cm-light-font-small">{{ event['network_title'] }}</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-1">
+                        <i id="cm-icon" class="far fa-clock"></i>
+                    </div>
+                    <div class="col">
+                        <span class="cm-regular-font-med">
+                           {{ event['weekday'] }}, {{ event['month'] }} {{ event['day'] }}, {{ event['year'] }}
+                        </span>
+                        <br/>
+                        <span class="cm-light-font-small">{{ event['time'] }}</span>
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-1">
+                        <i id="cm-icon" class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="col">
+                        <span class="cm-regular-font-med">{{ event['address_1'] }}</span>
+                        <br/> {% if event['address_2'] %}
+                        <span class="cm-regular-font-small">{{ event['address_2'] }}</span>
+                        <br/> {% endif %}
+                        <span class="cm-light-font-small">{{ event['location'] }}</span>
+                    </div>
+                </div>
+                {% if event['num_registered'] > 0%}
+                    <div class="row py-3">
+                        <div class="col-1">
+                            <i id="cm-icon" class="fas fa-user"></i>
+                        </div>
+                        <div class="col">
+                            {% if event['num_registered'] > 1 %}
+                                <span class="cm-regular-font-med">
+                                    {{ event['num_registered'] }} people going
+                                </span>
+                            {% elif event['num_registered'] == 1 %}
+                                <span class="cm-regular-font-med">
+                                    {{ event['num_registered'] }} person going
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="my-2 py-1 row">
+        <div class="px-3 cm-event-blurb">
+            <div class="container-fluid">
+                <div id="cm-event-description-title" class="row py-3 text-left">
+                    Description
+                </div>
+                <div class="row py-3 text-left cm-regular-font-small">
+                    {{ event['description'] }}
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-2 py-1 row">
+        <div class="px-3 cm-blurb">
+            <div class="py-3 text-center cm-regular-font-small">
+                {% if role == 'attending' %}
+                <h6 class="py-2 px-3"><strong>You are signed up to attend this event!</strong></h6>
+                <form action="/event/leave/?id={{ event['id'] }}" method="POST" class="text-center">
+                    {{ leave_form.hidden_tag() }}
+                    {{ leave_form.submit( id="cm-leave-button", class_="my-2 btn btn-sm" ) }}
+                </form>
+                {% elif role == 'hosting' %}
+                <h5 class="py-2 px-3"><strong>You are hosting this event!</strong></h5>
+                <form action="/event/cancelconfirm/?id={{ event['id'] }}" method="POST" class="text-center">
+                    {{ cancel_form.hidden_tag() }}
+                    {{ cancel_form.submit( id="cm-leave-button", class_="my-2 btn btn-secondary" ) }}
+                </form>
+                {% else %}
+                <form action="/event/join/?id={{ event['id'] }}" method="POST" class="text-center">
+                    {{ join_form.hidden_tag() }}
+                    {{ join_form.submit( id="cm-join-button", class_="my-2 btn btn-secondary" ) }}
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

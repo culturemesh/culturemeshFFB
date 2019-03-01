@@ -1,0 +1,103 @@
+alt_city_names: city_id, city_name, alt_name, 
+
+alt_country_names: country_id, country_name, alt_name, 
+
+alt_region_names: region_id, region_name, alt_name, 
+
+cities: id, name, latitude, longitude, region_id, region_name, country_id, country_name, population, feature_code, tweet_terms, region_tweet_terms, country_tweet_terms, region_tweet_terms_override, country_tweet_terms_override, tweet_terms_override, 
+
+conversations: id, id_user1, id_user2, start_date, 
+
+countries: id, iso_a2, name, latitude, longitude, population, feature_code, tweet_terms, tweet_terms_override, 
+
+event_images: id_event, id_image, 
+
+event_registration: id_guest, id_event, date_registered, job, 
+
+events: id, id_network, id_host, date_created, event_date, title, address_1, address_2, city, country, description, region, 
+
+images: id, hash, post, event, profile, date_loaded, 
+
+internal_careers: id, job_title, job_description, date_posted, 
+
+internal_press: id, title, url, sub_title, body, thumb_url, date, last_updated, 
+
+internal_team: id, name, job_title, bio, team_member_since, thumb_url, 
+
+language_countries: language_id, language_name, country_id, country_name, 
+
+languages: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_1127164532: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_1300716688: id, name, num_speakers, added, 
+
+languages_1310611204: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_1602089273: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_166592173: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_1811801193: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_181727287: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_1890542133: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_2094125894: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_292603025: id, name, num_speakers, added, 
+
+languages_483478404: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_662311816: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_671507951: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_682451093: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+languages_936529552: id, name, num_speakers, added, tweet_terms, tweet_terms_override, 
+
+messages: id, id_conversation, id_sender, id_recipient, message_text, send_date, 
+
+nearby_cities: city_id, city_name, neighbor_id, neighbor_name, dist_level, distance, 
+
+nearby_countries: country_id, country_name, neighbor_id, neighbor_name, dist_level, distance, 
+
+nearby_regions: region_id, region_name, neighbor_id, neighbor_name, dist_level, distance, 
+
+network_registration: id_user, id_network, join_date, 
+
+network_tweet_query_data: id_network, query_origin_scope, query_location_scope, query_level, query_auto_update, query_default, query_since_date, tweet_count, query_custom, 
+
+networks: id, city_cur, id_city_cur, region_cur, id_region_cur, country_cur, id_country_cur, city_origin, id_city_origin, region_origin, id_region_origin, country_origin, id_country_origin, language_origin, id_language_origin, network_class, date_added, img_link, 
+
+post_images: id_post, id_image1, id_image2, id_image3, 
+
+post_replies: id, id_parent, id_user, id_network, reply_date, reply_text, 
+
+post_tweet_replies: id, id_parent, id_user, id_network, reply_date, reply_text, 
+
+post_tweets: id, id_network, name, screen_name, text, profile_image_url, created_at, id_twitter, 
+
+posts: id, id_user, id_network, post_date, post_text, post_class, post_original, vid_link, img_link, 
+
+regions: id, name, latitude, longitude, country_id, country_name, population, feature_code, tweet_terms, country_tweet_terms, tweet_terms_override, country_tweet_terms_override, 
+
+reply_images: id_reply, id_image1, id_image2, id_image3, 
+
+search_keys: id, key, city_id, city_name, region_id, region_name, country_id, country_name, language_id, language_name, class_searchable, 
+
+suggested_networks: id, city, region, language, date_suggested, 
+
+tweet_query_adjustments: id, id_network, start_level, target_level, origin_scope_start, origin_scope_end, location_scope_start, location_scope_end, start_since_date, end_since_date, prev_query_relevance, 
+
+user_images: id_user, id_image, 
+
+user_info: id, uid, first_name, last_name, gender, about_me, 
+
+user_notifications: id, uid, events_upcoming, events_interested_in, company_news, network_activity, 
+
+users: id, username, first_name, last_name, email, password, role, register_date, last_login, gender, about_me, events_upcoming, events_interested_in, company_news, network_activity, confirmed, act_code, img_link, fp_code, 
+
+users_admin: id, username, password, 

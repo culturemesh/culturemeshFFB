@@ -1,0 +1,128 @@
+{% from "macros.html" import eventblurb %}
+{% from "macros.html" import postblurb %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="cm-profile-card" class="row">
+  <div class="center text-center">
+    <div class="p-3 text-center">
+      <h3 id="cm-network-title">{{ network_info['network_title']}}</h3>
+      <p id="cm-network-members-and-posts">
+        {% if network_info['num_users'] == 1 %}
+          {{ network_info['num_users'] }} member
+        {% else %}
+          {{ network_info['num_users'] }} members
+        {% endif %}
+        &middot;
+        {% if network_info['num_posts'] == 1 %}
+          {{ network_info['num_posts'] }} post
+        {% else %}
+          {{ network_info['num_posts'] }} posts
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="col-sm text-center">
+    <div id="cm-dashboard-menu" class="btn-group btn-group-sm" role="group">
+      {% block network_buttons %}
+        <a href="/network/?id={{ network_info['id'] }}" id="cm-button" type="button" class="btn btn-secondary">Home</a>
+        <a href="/network/posts/?id={{ network_info['id'] }}" id="cm-button" type="button" class="btn btn-secondary">Posts</a>
+        <a href="/network/events/?id={{ network_info['id'] }}" id="cm-button" type="button" class="btn btn-secondary">Events</a>
+      {% endblock %}
+    </div>
+  </div>
+
+  {% block network_content %}
+
+  <div class="container-fluid p-3 text-center">
+    <div class="cm-blurb px-3 py-3">
+      {% if network_info['user_is_member'] %}
+        <div class="row p-2">
+          <p>
+            {{ network_info['greeting'] }}
+          </p>
+        </div>
+      {% else %}
+        <div class="row p-2">
+          <p>
+            {{ network_info['greeting'] }}
+          </p>
+        </div>
+        <form action="join/?id={{ network_info['id'] }}"
+              method="POST"
+              class="text-center">
+          {{ form.hidden_tag() }}
+          {{ form.submit(
+                id="cm-join-network-button",
+                class_="my-2 btn btn-secondary btn-sm pr-3"
+              )
+          }}
+        </form>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="p-3 text-center">
+    <h4>Recent Posts</h4>
+  </div>
+
+  {% if network_info['posts'] | length == 0 %}
+    <div class="p-4 text-center">
+      No posts.
+      <a class="hidden-link" id="cm-color-primary" href="/network/posts/new/?id={{ network_info['id'] }}">
+        Make one.
+      </a>
+    </div>
+  {% else %}
+    {% for post in network_info['posts'] %}
+    <div class="py-1 row">
+      {{ postblurb(post) }}
+    </div>
+    {% endfor %}
+
+    <div class="py-3 row">
+      <a id="cm-generic-button"
+        type="button"
+        class="btn btn-secondary"
+        href="/network/posts/?id={{ network_info['id'] }}">
+        View more posts
+      </a>
+    </div>
+  {% endif %}
+
+
+  <div class="p-3 text-center">
+    <h4>Upcoming Events</h4>
+  </div>
+
+  {% if upcoming_events | length == 0 %}
+    <div class="p-4 text-center">
+      No upcoming events. <a id="cm-color-primary" class="hidden-link" href="/network/events/new/?id={{ network_info['id'] }}">
+        Create one.
+      </a>
+    </div>
+  {% else %}
+    {% for event in upcoming_events %}
+    <div class="py-1 row">
+      {{ eventblurb(event) }}
+    </div>
+    {% endfor %}
+
+    <div class="py-3 row">
+      <a id="cm-generic-button"
+        type="button"
+        class="btn btn-secondary"
+        href="/network/events/?id={{ network_info['id'] }}">
+        View more events
+      </a>
+    </div>
+  {% endif %}
+
+{% endblock %}
+</div>
+
+{% endblock %}

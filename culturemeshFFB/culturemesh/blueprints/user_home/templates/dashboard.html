@@ -1,0 +1,99 @@
+{% from "macros.html" import eventblurbwithnetwork %}
+{% from "macros.html" import postblurbwithnetwork %}
+{% extends "base.html" %}
+
+{% block content %}
+<div id="cm-profile-card" class="row">
+    <div class="center text-center">
+        <div class="pt-4">
+            <img class="usr-image" src="{{ user['img_url'] }}">
+        </div>
+        <span class="p-1">
+        <h3 id="cm-profile-name">Welcome, {{ user['first_name'] }}</h3>
+      </span>
+    </div>
+</div>
+<div class="row cm-profile-dashboard">
+    <div class="col-sm text-center">
+        <div id="cm-dashboard-menu" class="btn-group btn-group-sm" role="group">
+            {% block dashboard_buttons %}
+            <a href="/home/dashboard/" id="cm-button" type="button" class="selected-btn btn btn-secondary">Dashboard</a>
+            <a href="/home/networks/" id="cm-button" type="button" class="btn btn-secondary">Networks</a>
+            <a href="/home/events/" id="cm-button" type="button" class="btn btn-secondary">Events</a>
+            <a href="/home/account/" id="cm-button" type="button" class="btn btn-secondary">Account</a> {% endblock %}
+        </div>
+    </div>
+    {% block dashboard_content %}
+    <div class="p-3 container">
+
+        <!-- Hosting -->
+        <div class="p-3 text-center">
+          <h4 class="pb-3">Upcoming events you're <strong>hosting</strong></h2>
+          {% if events_hosting|length == 0 %}
+            <div class="p-4 text-center">
+              You are not hosting any events.
+            </div>
+          {% else %}
+              {% for event in events_hosting %}
+                <div class="py-1 row">
+                  {{ eventblurbwithnetwork(event) }}
+                </div>
+              {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Attending -->
+        <div class="pb-3 px-3 text-center">
+          <h4 class="pb-3">Upcoming events you're <strong>attending</strong></h2>
+          {% if events_attending|length == 0 %}
+              <div class="p-4 text-center">
+                You are not attending any upcoming events.
+              </div>
+            {% else %}
+                {% for event in events_attending %}
+                  <div class="py-1 row">
+                    {{ eventblurbwithnetwork(event) }}
+                  </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- Other -->
+        <div class="pb-3 px-3 text-center">
+          <h4 class="pb-3">Other events in your networks</h2>
+            {% if upcoming_events_in_networks|length == 0 %}
+                <div class="p-4 text-center">
+                  No upcoming events.
+                </div>
+              {% else %}
+                  {% for event in upcoming_events_in_networks %}
+                    <div class="py-1 row">
+                      {{ eventblurbwithnetwork(event) }}
+                    </div>
+                  {% endfor %}
+              {% endif %}
+        </div>
+
+        <!-- Posts -->
+        <div class="p-3 text-center">
+          <h4>Recent posts</h2>
+            {% if latest_posts|length == 0 %}
+              <div class="p-4 text-center">
+                No recent posts.
+              </div>
+            {% else %}
+              <div class="p-3 container-fluid">
+                {% for post in latest_posts %}
+                  <div class="py-1 row">
+                    {{ postblurbwithnetwork(post) }}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+
+
+{% endblock %}

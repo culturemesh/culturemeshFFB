@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% from "macros.html" import error_blurb %}
+{% block content %}
+
+  <!-- Post text and blurb -->
+  <div class="wrapper container-fluid">
+    <div class="my-2 py-1 row">
+      <div class="px-2" id="cm-post-blurb">
+        Post in Network:
+      </div>
+      <div class="px-2 pt-2 pb-3 row">
+        <div class="col-1">
+          <a href="/network/?id={{ post['id_network'] }}" class="hidden-link">
+            <i id="cm-icon" class="fas fa-users"></i>
+          </a>
+        </div>
+        <div class="col">
+          <div id="cm-post-blurb">
+            <a href="/network/?id={{ post['id_network'] }}" class="hidden-link">
+              {{ post['network_title'] }}
+            </a>
+        </div>
+        </div>
+      </div>
+      <div class="cm-post-text px-1 py-3">
+        <div class="col">
+          <div class="row pb-2">
+            <div class="col-8 text-left">
+              <a href="/u/{{ post['id_user'] }}/" class="hidden-link">
+                <span class="cm-username">{{ post['username'] }}</span>
+              </a>
+              <span class="cm-time-ago">{{ post['time_ago'] }}</span>
+            </div>
+            <div class="col-4 text-right">
+              {% if curr_user_id|string() == post['id_user']|string() %}
+              <a href="edit/?id={{post['id']}}" class="hidden-link">
+                  <i id="cm-icon" class="far fa-edit"></i>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ post['post_text'] }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if error_msg %}
+      {{ error_blurb(error_msg) }}
+    {% endif %}
+
+  </div>
+
+  <!-- Post replies -->
+  {% if num_replies is defined and num_replies > 0 %}
+    <div class="cm-replies-box py-1">
+      <div class="wrapper container-fluid p-2 pl-5">
+        <div class="text-left pb-3 pl-0" id="cm-reply-header">
+          Replies
+        </div>
+
+        {% for i in range(num_replies) %}
+        <div class="cm-post-text px-1 py-3">
+          <div class="col">
+            <div class="row pb-2">
+              <div class="col-8 text-left">
+                <a href="/u/{{ replies[i]['id_user'] }}/" class="hidden-link">
+                  <span class="cm-username">{{ replies[i]['username'] }}</span>
+                </a>
+                <span class="cm-time-ago">{{ replies[i]["time_ago"] }}</span>
+              </div>
+              <div class="col-4 text-right">
+                {% if curr_user_id|string() == replies[i]["id_user"]|string() %}
+                <a href="reply/edit/?id={{replies[i]['id']}}" class="hidden-link">
+                  <i id="cm-icon" class="far fa-edit"></i>
+                </a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ replies[i]["reply_text"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Add reply box -->
+
+  <div class="wrapper container-fluid py-3">
+    <form action="" method="POST">
+
+      {{ form.hidden_tag() }}
+
+      <div class="cm-add-reply-div text-right">
+        {{ form.post_reply_content(
+              size=150,
+              cols="35",
+              rows="4",
+              id="cm-post-comment",
+              placeholder="Leave a reply...",
+              class_="my-1 form-control"
+            )
+        }}
+      </div>
+      <div class="col">
+        <div class="row">
+          {{ form.submit(
+              id="cm-reply-submit-button",
+              class_="my-2 btn btn-secondary btn-sm pr-3"
+             )
+          }}
+        </div>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

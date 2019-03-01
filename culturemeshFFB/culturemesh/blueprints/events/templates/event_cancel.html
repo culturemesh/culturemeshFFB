@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="wrapper container-fluid text-center">
+    <div class="pt-3 px-3 row">
+      <a href="/event/?id={{ event['id'] }}" class="hidden-link">
+        <h4>{{ event['title'] }}</h4>
+      </a>
+    </div>
+  </div>
+
+  <div class="container-fluid p-3 pb-4 text-center">
+    <div class="cm-blurb px-3 py-3">
+      <div class="row p-2">
+        <p>
+          <strong>Are you sure you want to cancel this event?</strong>
+        </p>
+        <p>
+          Everybody that has signed up to attend this event will be automatically
+          unregistered from it, and you won't be able to get it back.
+        </p>
+      </div>
+      <form action="/event/cancel/?id={{ event['id'] }}" method="POST" class="text-center">
+        {{ form.hidden_tag() }}
+        {{ form.submit(
+              id="cm-leave-button",
+              class_="my-2 btn btn-secondary pr-3"
+            )
+        }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

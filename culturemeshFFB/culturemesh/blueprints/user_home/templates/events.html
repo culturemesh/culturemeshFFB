@@ -1,0 +1,41 @@
+{% from "macros.html" import eventblurb %}
+{% extends "dashboard.html" %}
+
+  {% block dashboard_content %}
+
+  <!-- Hosting -->
+  <div class="p-3 container">
+    <div class="p-3 text-center">
+      <h4 class="pb-3">Events you're <strong>Hosting</strong></h2>
+        {% if events_hosting | length == 0 %}
+          <div class="p-4 text-center">
+            You are not hosting any events.
+          </div>
+        {% else %}
+            {% for event in events_hosting %}
+              <div class="py-1 row">
+                {{ eventblurb(event) }}
+              </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+
+  <!-- Attending -->
+  <div class="p-3 container">
+    <div class="p-3 text-center">
+      <h4 class="pb-3">Events you're <strong>Attending</strong></h2>
+        {% if events_attending | length == 0 %}
+          <div class="p-4 text-center">
+            You are not attending any events.
+          </div>
+        {% else %}
+            {% for event in events_attending %}
+              <div class="py-1 row">
+                {{ eventblurb(event) }}
+              </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+  {% endblock %}

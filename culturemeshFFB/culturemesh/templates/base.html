@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {% block head %}
+      <title>CultureMesh - Connecting the World's Diasporas</title>
+      <meta charset="utf-8">
+      <meta name="description" content="Welcome to CultureMesh - Connecting the world's diasporas!" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/culturemesh-style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome/css/fontawesome-all.min.css') }}">
+    {% endblock %}
+  </head>
+
+  <body>
+
+    <!-- Content Starts Here -->
+
+    <div class="wrapper container-fluid cm-body">
+
+      {% block header %}
+      <div id="cm-header" class="row">
+          <div class="p-3 col-8 my-auto">
+              <a href="/">
+                <img id="cm-top-logo" src="https://www.culturemesh.com/images/logo_header.png"/>
+              </a>
+          </div>
+
+          <div class="p-3 col-4 text-center my-auto">
+              <a href="/search/">
+                <i id="cm-icon" class="mt-1 p-1 fas fa-search fa-lg"></i>
+              </a>
+              <a href="/home/">
+                <i id="cm-icon" class="mt-1 p-1 fas fa-home fa-lg"></i>
+              </a>
+          </div>
+      </div>
+      {% endblock %}
+
+       {% block content %}
+        <div class="row">
+          <div class="container-fluid">
+            <h1 class="text-center">Hello, I am base</h1>
+          </div>
+        </div>
+      {% endblock %}
+
+      <div id="cm-footer" class="page-footer container-fluid">
+        {% block footer %}
+          <div class="row px-5 py-3">
+            {% if current_user.is_authenticated %}
+              <div class="col-6 text-center">
+                <a href="/about/">About</a>
+              </div>
+              <div class="col-6 text-center">
+                <a href="/logout/">Log Out</a>
+              </div>
+            {% else %}
+              <div class="col-12 text-center">
+                <a href="/about/">About</a>
+              </div>
+            {% endif %}
+          </div>
+        {% endblock %}
+        <div class="navbar navbar-fixed-bottom">
+          <p class="p-2 text-center cm-copyright">
+              &copy; Copyright 2018 by <a href="/about/">CultureMesh</a>
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+
+  </body>
+</html>

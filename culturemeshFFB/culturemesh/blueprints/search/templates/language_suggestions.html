@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}
+<div class="p-3 container-fluid">
+    <form action="/search/gotonetwork/" method="post">
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <h4>Choose a network</h4>
+        </div>
+        <div class="py-1 row">
+            <div id="cm-search-blurb">
+                If the location/language you are looking for is not here,
+                <a href="/search/">try searching
+                again</a> with more specific keywords.
+            </div>
+        </div>
+        <div class="my-2 py-1 row">
+            <div class="cm-blurb">
+                <div class="container-fluid p-3">
+                    <div id="cm-search-blurb">
+                        People that speak
+                    </div>
+                    {% for l in language_suggestions %}
+                    <div class="p-3 row text-left">
+                        <div class="col-2">
+                            {% if loop.index == 1 %}
+                                <input type="radio" name="language" value="{{ l['name'] }}" id="{{ l['name'] }}" checked/>
+                            {% else %}
+                                <input type="radio" name="language" value="{{ l['name'] }}" id="{{ l['name'] }}" />
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <label for="{{ l['name'] }}">{{ l['name'] }}</label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="my-2 py-1 row">
+            <div class="cm-blurb">
+                <div class="container-fluid p-3">
+                    <div id="cm-search-blurb">
+                        and live in
+                    </div>
+                    {% for l in current_location_suggestions %}
+                    <div class="p-3 row text-left">
+                        <div class="col-2">
+                            {% if loop.index == 1 %}
+                                <input type="radio" name="curr_loc" value="{{ l['query'] }}" id="{{ l['query'] }}" checked/>
+                            {% else %}
+                                <input type="radio" name="curr_loc" value="{{ l['query'] }}" id="{{ l['query'] }}" />
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            <label for="{{ l['query'] }}">{{ l['name'] }}</label>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <input class="my-2 btn btn-secondary btn-sm pr-3" id="cm-search-button" name="submit" type="submit" value="Go to Network">
+    </form>
+</div>
+{% endblock %} {% block footer %} {% if current_user.is_authenticated %} {{ super() }} {% else %}
+<!-- empty -->
+{% endif %} {% endblock %}

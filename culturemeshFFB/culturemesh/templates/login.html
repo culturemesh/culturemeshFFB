@@ -1,0 +1,29 @@
+{% extends "login_register_base.html" %}
+
+
+{% block form_body %}
+<div class="cm-logo-section pt-5 pb-3">
+    <img src="https://www.culturemesh.com/images/logo_header.png" />
+</div>
+<div class="cm-signin-section px-4">
+    <div class="cm-signin-prompt">
+        <p class="p-3">{{ msg }}</p>
+    </div>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <input type="text" class="cm-input-field" name="email_or_username" placeholder="Email or Username"></input>
+        <br>
+        <input type="password" class="cm-input-field" name="password" placeholder="Password"></input>
+        <br>
+        <br>
+        <input type="submit" class="cm-box-button" id="signin-button" value="Login"></input>
+    </form>
+</div>
+<div class="cm-signup-section py-4">
+    <div class="cm-account-prompt p-2">
+        Need an account?
+    </div>
+    <a href="/register/">Sign Up</a>
+</div>
+{% endblock %}
+

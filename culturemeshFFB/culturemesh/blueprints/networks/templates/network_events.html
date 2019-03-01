@@ -1,0 +1,53 @@
+{% from "macros.html" import eventblurb %}
+{% extends "network.html" %}
+
+{% block network_content %}
+
+  <div class="p-3 text-center">
+    <h4>Events</h4>
+  </div>
+
+  {% if network_info['user_is_member'] %}
+    <div class="pb-3 text-center">
+      <a class="btn btn-secondary"
+         type="button"
+         href="/network/events/new/?id={{ network_info['id'] }}"
+         id="cm-create-event-button">
+         + Create an Event
+      </a>
+    </div>
+  {% endif %}
+
+  {% for event in network_info['events'] %}
+  <div class="py-1 row">
+    {{ eventblurb(event) }}
+  </div>
+  {% endfor %}
+
+  {% if network_info['events']|length == 0 %}
+    <div class="p-4 text-center">
+      No more events to see.
+    </div>
+  {% else %}
+    <div class="py-3 row">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col text-center">
+            <a href="/network/events/?id={{ network_info['id'] }}&index={{ event_index }}">
+              <i id="cm-icon" class="fas fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center cm-orange-text">
+            <a class="cm-orange-text"
+             href="/network/events/?id={{ network_info['id'] }}&index={{ event_index }}">
+            Next
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}

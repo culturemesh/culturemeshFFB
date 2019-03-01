@@ -1,0 +1,23 @@
+# Enable rewriting URLS
+RewriteEngine On
+
+# Don't interfere with static files
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Tell the Apache Server to run .fgci scripts
+# when it encounters them, and allow the Server
+# to execute them.
+Options +ExecCGI
+AddHandler fcgid-script .fcgi
+
+# Rewrite all files that are not the mobile.fcgi script
+#
+#    e.g.
+#         m.culturemesh.com/v1/ is re-written to
+#           => m.culturemesh.com/mobile.fcgi/v1/
+#	
+#    	  m.culturemesh.com/some-stuff is re-written to
+#           => m.culturemesh.com/mobile.fcgi/some-stuff
+#
+RewriteCond %{REQUEST_FILENAME} !=/home1/culturp7/public_html/mobile/mobile.fcgi
+RewriteRule ^(.*)$ mobile.fcgi/$1/ [L,NC]

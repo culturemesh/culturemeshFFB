@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "macros.html" import sad_blurb %}
+
+{% block content %}
+<div class="p-3 container-fluid">
+    <form action="" method="post">
+        <div class="row">
+            <h4>Search</h4>
+        </div>
+        <div class="py-1 row">
+            <div id="cm-search-blurb">
+                Find people who speak a language or are from a certain place.
+            </div>
+        </div>
+
+        {% if msg is defined %}
+            {{ sad_blurb(msg) }}
+        {% endif %}
+
+        <div class="my-2 py-1 row">
+            <div class="cm-blurb">
+                <div class="container-fluid p-3">
+                    <div id="cm-search-blurb">
+                        Find people who
+                    </div>
+                    <div class="row p-3">
+                        {{ form.search_type() }}
+                    </div>
+
+                    {{ form.hidden_tag() }}
+
+                    <div class="row p-3">
+                        {{ form.origin_or_language(
+                                size=32,
+                                class_="p-2 form-control cm-text-input-field"
+                            )
+                        }}
+                    </div>
+
+                    <div id="cm-search-blurb">
+                        and live in
+                    </div>
+
+                    <div class="row p-3">
+                        {{ form.residence(
+                                size=32,
+                                class_="p-2 form-control cm-text-input-field"
+                            )
+                        }}
+                    </div>
+                    <div class="row p-3">
+                        {{ form.submit(
+                                id="cm-search-button",
+                                class_="my-2 btn btn-secondary btn-sm pr-3"
+                            )
+                        }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %} {% block footer %} {% if current_user.is_authenticated %} {{ super() }} {% else %}
+<!-- empty -->
+{% endif %} {% endblock %}

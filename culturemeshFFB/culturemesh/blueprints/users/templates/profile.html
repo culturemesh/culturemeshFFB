@@ -1,0 +1,48 @@
+{% from "macros.html" import networkblurbnoremove %}
+{% extends "base.html" %}
+
+{% block content %}
+<div id="cm-profile-card" class="row">
+  <div class="center">
+    <div class="pt-4 text-center">
+        <img class="usr-image" src="{{ user['img_url'] }}">
+    </div>
+    <div class="pt-4">
+      <span class="text-center">
+        <h3 id="cm-profile-name">{{ user['first_name'] }} {{ user['last_name'] }}</h3>
+      </span>
+    </div>
+    <span class="text-center">
+      <h6 id="cm-profile-username">{{ user['username'] }}</h6>
+    </span>
+    <hr>
+    <div class="container-fluid px-5">
+      <div class="row pt-3 pb-5 px-3" id="cm-profile-about-me">
+        {{ user['about_me'] }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row cm-profile-dashboard">
+  {% block dashboard_content %}
+  <div class="p-3 container">
+  <div class="p-3">
+    <h4 class="text-center">{{ user['first_name'] }}'s Networks</h2>
+      {% if networks|length == 0 %}
+        <div class="p-4 text-center">
+          {{ user['first_name'] }} does not belong to any networks yet.
+        </div>
+      {% else %}
+          {% for network in networks %}
+            <div class="py-1 row">
+              {{ networkblurbnoremove(network) }}
+            </div>
+          {% endfor %}
+      {% endif %}
+  </div>
+</div>
+  {% endblock %}
+</div>
+
+
+{% endblock %}

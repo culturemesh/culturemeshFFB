@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "macros.html" import error_blurb %}
+{% block content %}
+
+  <!-- Post text and blurb -->
+  <div class="wrapper container-fluid pt-3">
+    <div class="cm-blurb">
+      <div class="container-fluid">
+        <div class="pt-3 px-3 row">
+          <p>Edit your
+            <strong>
+            {% if is_post_reply %} reply {% else %} post {% endif %}
+            </strong>
+            in network: </p>
+        </div>
+        <div class="row pb-3">
+          <div class="col-1">
+            <a href="/network/?id={{ post['id_network'] }}" class="hidden-link">
+              <i id="cm-icon" class="fas fa-users"></i>
+            </a>
+          </div>
+          <div class="col">
+            <a href="/network/?id={{ post['id_network'] }}" class="hidden-link">
+              <span class="cm-light-font-small">{{ network_title }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if error_msg %}
+      {{ error_blurb(error_msg) }}
+    {% endif %}
+
+  </div>
+
+  <div class="wrapper container-fluid py-3">
+    <form action="" method="POST">
+
+      {{ edit_post_form.hidden_tag() }}
+
+      <div class="cm-create-post-div text-right cm-regular-font-small">
+        {{ edit_post_form.content(
+              size=150,
+              cols="35", rows="4",
+              placeholder="New content",
+              class_="p-2 form-control cm-text-input-field"
+            )
+        }}
+      </div>
+      <div class="col">
+        <div class="row py-2">
+          {{ edit_post_form.submit(
+              id="cm-post-submit-button",
+              class_="my-2 btn btn-secondary btn-sm pr-3"
+             )
+          }}
+        </div>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

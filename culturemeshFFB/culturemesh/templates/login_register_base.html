@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CultureMesh - Connecting the World's Diasporas</title>
+      <meta charset="utf-8">
+      <meta name="description" content="Welcome to CultureMesh - Connecting the world's diasporas!" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/culturemesh-style.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome/css/fontawesome-all.min.css') }}">
+</head>
+
+<body>
+    <div class="wrapper container-fluid cm-login-body">
+       {% block form_body %}
+       {% endblock form_body %}
+    </div>
+</body>
+
+</html>

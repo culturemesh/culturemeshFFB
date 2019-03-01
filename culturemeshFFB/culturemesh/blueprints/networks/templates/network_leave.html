@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="wrapper container-fluid">
+    <div class="my-2 pt-1 row">
+      <div class="px-2 pt-2 pb-2 row">
+        <div class="col-1">
+            <a href="/network/?id={{ id_network }}" class="hidden-link">
+              <i id="cm-icon" class="fas fa-users"></i>
+            </a>
+          </div>
+        <div class="col">
+          <div id="cm-post-blurb">
+            <a href="/network/?id={{ id_network }}" class="hidden-link">
+              {{ network_title }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-3 pb-4 text-center">
+    <div class="cm-blurb px-3 py-3">
+      <div class="row p-2">
+        <p>
+          <strong>Are you sure you want to leave this network?</strong>
+        </p>
+
+        <p>
+          Any events which you
+          are hosting in this network will be deleted, and you will be removed
+          from all events you are attending.
+        </p>
+      </div>
+      <form method="POST" class="text-center">
+        {{ form.hidden_tag() }}
+        {{ form.submit(
+              id="cm-leave-network-button",
+              class_="my-2 btn btn-secondary btn-sm pr-3"
+            )
+        }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
