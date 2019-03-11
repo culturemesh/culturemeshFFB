@@ -24,12 +24,14 @@ from culturemesh.constants import REGISTER_MSG, \
   REGISTER_PASSWORDS_DONT_MATCH_MSG, REGISTER_ERROR_MSG, \
   REGISTER_USERNAME_TAKEN_MSG, REGISTER_EMAIL_TAKEN_MSG, PRIVACY_MSG, \
   REGISTER_UPSTREAM_ERROR_MSG
-
+from culturemesh.log import log_home
 from culturemesh.utils import email_registered, username_taken
+from culturemesh.log import new_user
 
 @app.route("/")
 @app.route("/index/")
 def home():
+    log_home()
 	return render_template('index.html')
 
 @app.route("/about/")
