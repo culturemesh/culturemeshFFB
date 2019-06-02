@@ -9,8 +9,8 @@ input {
 
 body {
   height:100%;
-	height: 100vh;
-	width: 100%;
+  height: 100vh;
+  width: 100%;
   background-color: white;
   text-align: center;
   justify-content: center;
@@ -55,6 +55,8 @@ body {
 #cm-top-logo {
   width:85%;
   max-width:300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #cm-icon {
@@ -64,6 +66,15 @@ body {
 
 #cm-header {
   border-bottom: 2px solid #ccc;
+}
+
+#cm-indexHeader {
+  font-size: 50px;
+  font: sans;
+  font-color: white;
+  border-bottom: 4px solid #ccc;
+  border-bottom-color: black;
+  background-color: white
 }
 
 #cm-footer {
@@ -640,6 +651,10 @@ body {
 
 .cm-signin-section {
   justify-content: space-around;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 
@@ -649,6 +664,7 @@ body {
 
 .cm-signin-prompt {
   justify-content: center;
+  text-align: center;
   color: grey;
 }
 
@@ -673,12 +689,61 @@ body {
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
+  width: 60px;
+  height: 40px;
   text-align: center;
-  padding: 15px;
+  padding: 5px;
   background-color: #dd5935;
   color: white;
   border: none;
 }
+
+.cm-register-button {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  padding: 5px;
+  background-color: #dd5935;
+  color: white;
+  border: none;
+}
+
+.cm-about-button {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 5px;
+  background-color: #dd5935;
+  color: white;
+  border: none;
+}
+
+.cm-guest-button {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  padding: 5px;
+  background-color: #dd5935;
+  color: white;
+  border: none;
+  margin: auto;
+}
+
+.cm-index-page {
+  background-color: white
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  }
 
 .cm-signup-section {
   justify-content: center;

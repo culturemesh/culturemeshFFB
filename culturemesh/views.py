@@ -36,10 +36,18 @@ def home():
 def about():
 	return render_template('about.html')
 
+# @app.route("/search/")
+# def search():
+#     return render_template('')
+
+@app.route("/aboutIndexPage/")
+def aboutIndexPage():
+    return render_template('aboutIndexPage.html')
+
 @app.route("/register/", methods=['GET', 'POST'])
 def register():
   if current_user and current_user.is_authenticated:
-    return redirect(url_for('home'))
+     return redirect(url_for('home'))
 
   def make_register_page_tmpl(message, data_=None):
       return render_template(
@@ -120,7 +128,7 @@ def logout():
 
 @login_manager.unauthorized_handler
 def unauthorized_callback():
-    return redirect('/login/')
+    return redirect('/index/')
 
 
 ##################### Other functions #########################
@@ -154,7 +162,7 @@ def attempt_login(c, email_or_username, password):
   user_dict = c.get_user(token['id'])
   user = User(user_dict, api_token=token)
   flask_login.login_user(user)
-  return redirect('/home/')
+  return redirect('/about/')
 
 @login_manager.user_loader
 def load_user(user_json_str):
