@@ -91,6 +91,8 @@ def register():
       'last_name': lastname,
       'email': email,
       'role': '0',
+      'about_me': '',
+      'gender': '',
       'act_code': 'NULL' # TODO: what to do here?
     }
 
@@ -187,4 +189,3 @@ def page_not_found(e):
 @app.errorhandler(httplib.METHOD_NOT_ALLOWED)
 def internal_server_error(e):
     return render_template('error.html')
-
