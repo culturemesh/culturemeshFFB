@@ -27,7 +27,7 @@ def network():
   id_network = request.args.get('id')
   c = Client(mock=False)
 
-  id_user = current_user.get_id()
+  id_user = current_user.id
   network_info = gather_network_info(id_network, id_user, c)
   upcoming_events = get_upcoming_events_by_network(c, id_network, 3)
 

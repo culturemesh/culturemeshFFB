@@ -14,10 +14,19 @@ from culturemesh.blueprints.search.constants import GO_TO_NETWORK_MAX_RETRIES
 from culturemesh.blueprints.search.constants import GO_TO_NETWORK_WAIT_SECS
 
 import time
+from random import choice
 
 search = Blueprint('search', __name__, template_folder='templates')
 
 MAX_SUGGESTIONS = 10
+
+
+@search.route("/popular", methods=['GET'])
+def go_to_popular_network():
+    c = Client(mock=False)
+    nets = c.get_popular_networks(MAX_SUGGESTIONS)
+    net = choice(nets)
+    return redirect(url_for('networks.network', id=str(net['id'])))
 
 @search.route("/", methods=['GET', 'POST'])
 def render_search_page():
