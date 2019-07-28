@@ -1,11 +1,64 @@
-{% extends "base.html" %}
+<!-- This HTML File formats the index/home page-->
+
+{% extends "indexBase.html" %}
 
 {% block content %}
-	<div class="row">
-		<center>
-		<h3 class="p-4" id="stage-title">
-			Connecting the world's diasporas
+
+
+<head>
+	<!-- favicon (logo in tab) -->
+	<link rel="icon" type="image/x-icon" href="https://www.culturemesh.com/images/cm_logo_blank_profile_icon.png">
+</head>
+<div class="row">
+	<div class="cm-index-page">
+		<br>
+		<!-- logo -->
+		<a href="/">
+			<img id="cm-top-logo" src="https://www.culturemesh.com/images/logo_header.png"/>
+			<br>
+		</a>
+	</div>
+	<!-- greeting image -->
+	<!--<img src="https://www.culturemesh.com/images/cmfrontpage_image22.jpg" height = auto  width=85%>-->
+
+	<div class="cm-signin-section px-5">
+		<br>
+		<div class="cm-signin-prompt">
+			<p class="p-3">{{ msg }}</p>
+		</div>
+		<!-- login functionality for the index page -->
+		<form action="" method="post">
+			{{ form.hidden_tag() }}
+			<input type="text" class="cm-input-field" name="email_or_username" placeholder="Email or Username"></input>
+			<br>
+			<input type="password" class="cm-input-field" name="password" placeholder="Password"></input>
+			<br>
+			<br>
+			<input type="submit" class="cm-box-button" id="signin-button" value="Login"></input>
+			<br>
+			<br>
+		</form>
+		<form action="/register/" method="">
+			<input type="submit" class="cm-register-button" value="Need an account?"></input>
+		</form>
+		<h3 class="p-2" id="loginOrGuest">
+			or
 		</h3>
+<<<<<<< HEAD
+		<form action="/search/" method="">
+			<input type="submit" class="cm-guest-button" value="CONTINUE AS GUEST">
+		</form>
+		<br>
+	</div>
+
+
+
+
+
+
+</div>
+
+=======
 			<img src="https://www.culturemesh.com/images/cmfrontpage_image15.jpg" height="207" width="368">
 				  <p class="p-3 text-center">
 					  <a href="/home/">Login</a>
@@ -30,4 +83,5 @@
 			</h3>
 		</center>
 	</div>
+>>>>>>> 8c243733ed481fdc072e194ee83e0858a5117316
 {% endblock %}
