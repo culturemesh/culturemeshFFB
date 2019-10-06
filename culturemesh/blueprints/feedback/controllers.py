@@ -1,7 +1,11 @@
-from flask import Blueprint, render_template, request, redirect, url_for, abort
+from flask import Blueprint, render_template, request, redirect, url_for, abort, Flask
 from culturemesh.client import Client
+from culturemesh import mail
 from flask_login import current_user
 from flask_login import login_required
+from flask_mail import Message, Mail
+import os
+import datetime
 
 from utils import enhance_event_date_info, parse_date
 
@@ -20,14 +24,15 @@ def ping():
 @feedback.route("/", methods=['GET', 'POST'])
 def render_feedback_form():
     if(request.method == 'POST'):
-        feedback = request.form
-        print("2")
-        form_submitted = FeedbackForm(request.form)
-        if(form_submitted.validate):
-            #replace later
-            feedback = feedback['feedback']
-        print("hi")
-        return redirect('/feedback/submitted/')
+         formdata = request.form
+         feedback = formdata['feedback']
+         print(type(current_user.get_id()))
+         msg = Message(str(datetime.datetime.now()) + ' : ' + current_user.get_id(),
+                       sender = 'culturemesh.feedback@gmail.com',
+                       recipients = ['culturemesh.feedback@gmail.com'], )
+         msg.body = feedback
+         mail.send(msg)
+         return redirect('/feedback/submitted/')
 
     return render_template(
       'feedback_form.html',

@@ -8,7 +8,9 @@
 		</h3>
 			<img src="https://www.culturemesh.com/images/cmfrontpage_image15.jpg" height="207" width="368">
 				  <p class="p-3 text-center">
-					  <a href="/home/">Login</a>
+						{% if not current_user.is_authenticated %}
+					  	<a href="/home/">Log In</a>
+						{% endif %}
 				  </p>
 		<h2 class="p-1" id="title-header">
 			Our Vision

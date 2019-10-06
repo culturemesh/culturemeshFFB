@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager
+from flask_mail import Mail
 
 import os
 
@@ -16,6 +17,26 @@ app.secret_key = str(os.environ['WTF_CSRF_SECRET_KEY'])
 csrf = CSRFProtect(app)
 
 import culturemesh.views
+
+# Set up mail
+
+DEBUG = True
+app.config.from_object(__name__)
+app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
+
+mail_settings = {
+    "MAIL_SERVER": "smtp.gmail.com",
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS" : False,
+    "MAIL_USE_SSL" : True,
+    "MAIL_USERNAME" : 'culturemesh.feedback@gmail.com',
+    "MAIL_PASSWORD" : 'fcpnahnbedyjdthl',
+    "MAIL_DEFAULT_SENDER" : 'culturemesh.feedback@gmail.com',
+}
+
+app.config.update(mail_settings)
+mail = Mail()
+mail.init_app(app)
 
 # Register Blueprints
 
