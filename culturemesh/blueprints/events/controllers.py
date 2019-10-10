@@ -9,6 +9,7 @@ from culturemesh.utils import user_is_attending_event
 from culturemesh.utils import get_network_title
 from culturemesh.utils import get_event_location
 from culturemesh.utils import safe_get_query_arg
+from culturemesh.utils import is_logged_in
 
 from culturemesh.blueprints.events.forms.event_forms import *
 from culturemesh.blueprints.networks.utils import gather_network_info
@@ -24,7 +25,6 @@ def ping():
   return c.ping_event()
 
 @events.route("/")
-@login_required
 def render_event():
     current_event_id = request.args.get('id')
     c = Client(mock=False)
@@ -40,27 +40,32 @@ def render_event():
 
     role = None
 
-    if event['id_host'] == current_user.id:
+    if is_logged_in(current_user):
+        user_id = current_user.id
+        if event['id_host'] == user_id:
 
-      # The current user is hosting this event.
-      role = 'hosting'
-      host['username'] = 'you'
+          # The current user is hosting this event.
+          role = 'hosting'
+          host['username'] = 'you'
 
-    elif user_is_attending_event(c, current_user.id, event):
+        elif user_is_attending_event(c, user_id, event):
 
-      # The current user is already signed up for this event.
-      role = 'attending'
+          # The current user is already signed up for this event.
+          role = 'attending'
+        else:
+
+          # The current user is not signed up for this event.
+          pass
     else:
+        user_id = None
 
-      # The current user is not signed up for this event.
-      pass
 
     return render_template(
       'event.html',
       event=event,
       host=host,
       role=role,
-      curr_user_id=current_user.id,
+      curr_user_id=user_id,
       join_form=EventJoinForm(),
       leave_form=EventLeaveForm(),
       cancel_form=EventCancelForm()

@@ -2,6 +2,7 @@
 # Tests client/networks.py
 #
 
+import random
 from nose.tools import assert_true, assert_equal
 import test.unit.client.client_test_prep
 from culturemesh.client import Client
@@ -87,3 +88,27 @@ def test_get_network_users():
     registrations2 = c.get_network_users(2, 1, max_id="2017-02-28 11:53:30")
     assert_equal(registrations2[0]['join_date'], "2017-02-27 11:53:30")
     assert_equal(len(registrations2), 1)
+
+
+# For random.seed(1)
+expected_pop_nets = [
+    {'id': 1, 'location_cur': {'country_id': 1, 'region_id': 1, 'city_id': 2},
+     'location_origin': {'country_id': 1, 'region_id': 2, 'city_id': 3},
+     'language_origin': {'id': 2, 'name': 'entish', 'num_speakers': 10,
+                         'added': 0}, 'network_class': 0,
+     'date_added': '1990-11-23 15:31:51', 'img_link': 'img1.png'},
+    {'id': 2, 'location_cur': {'country_id': 2, 'region_id': 4, 'city_id': 6},
+     'location_origin': {'country_id': 1, 'region_id': 1, 'city_id': 1},
+     'language_origin': {'id': 3, 'name': 'valarin', 'num_speakers': 1000,
+                         'added': 0},
+     'network_class': 0, 'date_added': '1995-11-23 15:31:51',
+     'img_link': 'img2.png'}
+]
+
+
+def test_get_popular_networks():
+    c = Client(mock=True)
+    random.seed(1)
+    nets = c.get_popular_networks(2)
+
+    assert_equal(nets, expected_pop_nets)

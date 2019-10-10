@@ -1,35 +1,60 @@
-{% extends "base.html" %}
+<!-- This HTML File formats the index/home page-->
+
+{% extends "indexBase.html" %}
 
 {% block content %}
-	<div class="row">
-		<center>
-		<h3 class="p-4" id="stage-title">
-			Connecting the world's diasporas
-		</h3>
-			<img src="https://www.culturemesh.com/images/cmfrontpage_image15.jpg" height="207" width="368">
-				  <p class="p-3 text-center">
-						{% if not current_user.is_authenticated %}
-					  	<a href="/home/">Log In</a>
-						{% endif %}
-				  </p>
-		<h2 class="p-1" id="title-header">
-			Our Vision
-		</h2>
-			<h3 class="p-2" id="title-description">
-				Millions of people live, work, and play outside of their home towns, provinces, states, and countries.
 
-				At CultureMesh, we're building networks to match these real-world dynamics and knit the diverse fabrics of our world together.
-			</h3>
-			<h2 class="p-1" id="title-header">
-			How it Works
-			</h2>
-			<h3 class="p-2" id="title-description">
-				1. Join a network you belong to. Many places feel like home? At CultureMesh you can easily switch between networks.
-				<br>
-				2. Join the conversation. Post your thoughts and opinions. Share what's new!
-				<br>
-				3. Connect to your diaspora - the world is your playground!
-			</h3>
-		</center>
+
+<head>
+	<!-- favicon (logo in tab) -->
+	<link rel="icon" type="image/x-icon" href="https://www.culturemesh.com/images/cm_logo_blank_profile_icon.png">
+</head>
+<div class="row">
+	<div class="cm-index-page">
+		<br>
+		<!-- logo -->
+		<a href="/">
+			<img id="cm-top-logo" src="https://www.culturemesh.com/images/logo_header.png"/>
+			<br>
+		</a>
 	</div>
+	<!-- greeting image -->
+	<!--<img src="https://www.culturemesh.com/images/cmfrontpage_image22.jpg" height = auto  width=85%>-->
+
+	<div class="cm-signin-section px-5">
+		<br>
+		<div class="cm-signin-prompt">
+			<p class="p-3">{{ msg }}</p>
+		</div>
+		<!-- login functionality for the index page -->
+		<form action="" method="post">
+			{{ form.hidden_tag() }}
+			<input type="text" class="cm-input-field" name="email_or_username" placeholder="Email or Username"></input>
+			<br>
+			<input type="password" class="cm-input-field" name="password" placeholder="Password"></input>
+			<br>
+			<br>
+			<input type="submit" class="cm-box-button" id="signin-button" value="Login"></input>
+			<br>
+			<br>
+		</form>
+		<form action="/register/" method="">
+			<input type="submit" class="cm-register-button" value="Need an account?"></input>
+		</form>
+		<h3 class="p-2" id="loginOrGuest">
+			or
+		</h3>
+		<form action="/search/" method="">
+			<input type="submit" class="cm-guest-button" value="CONTINUE AS GUEST">
+		</form>
+		<br>
+	</div>
+
+
+
+
+
+
+</div>
+
 {% endblock %}
