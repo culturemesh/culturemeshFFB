@@ -669,6 +669,11 @@ body {
   font-size: 1em;
 }
 
+.cm-large-text-input-field{
+  font-size: 1em;
+  height: 200px;
+}
+
 .cm-box-button {
   text-decoration: none;
   cursor: pointer;

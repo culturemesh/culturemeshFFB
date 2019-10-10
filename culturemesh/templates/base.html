@@ -51,14 +51,14 @@
           <div class="row px-5 py-3">
             {% if current_user.is_authenticated %}
               <div class="col-6 text-center">
-                <a href="/about/">About</a>
+                <a href="/about/">About</a> | <a href="/feedback/">Feedback</a>
               </div>
               <div class="col-6 text-center">
                 <a href="/logout/">Log Out</a>
               </div>
             {% else %}
               <div class="col-12 text-center">
-                <a href="/about/">About</a>
+                <a href="/about/">About</a> | <a href="/feedback/">Feedback</a>
               </div>
             {% endif %}
           </div>
