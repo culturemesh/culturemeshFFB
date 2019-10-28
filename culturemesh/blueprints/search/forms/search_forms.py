@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 class SearchForm(FlaskForm):
     search_type = SelectField(
         'Search Type',
-        choices=[('language', 'speak'), ('location', 'are from')]
+        choices=[('location', 'are from'), ('language', 'speak')]
     )
     origin_or_language = StringField(
         'origin/language', validators=[DataRequired()]

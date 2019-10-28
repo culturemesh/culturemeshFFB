@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "macros.html" import error_blurb %}
+
+{% block content %}
+
+  <p><br /></p>
+    <div class="cm-blurb">
+      <div class="container-fluid">
+        <div class="pt-3 px-3 row">
+          <p>Help us improve Culturemesh</p>
+        </div>
+      </div>
+
+    {% if error_msg %}
+      {{ error_blurb(error_msg) }}
+    {% endif %}
+
+  </div>
+
+  <div class="wrapper container-fluid">
+    <form action="" method="POST">
+      <div class="cm-create-event-div text-left cm-regular-font-small">
+
+        {{ feedback_form.hidden_tag() }}
+
+        <fieldset class="pt-3">
+          <label><strong>Give us your feedback</strong></label>
+          {{ feedback_form.feedback(
+              placeholder="What should we improve?",
+              class_="p-2 form-control cm-large-text-input-field"
+            )
+          }}
+        </fieldset>
+
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="row py-2">
+          {{ feedback_form.submit(
+              id="cm-event-create-button",
+              class_="my-2 btn btn-secondary btn-sm pr-3"
+             )
+          }}
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+{% endblock %}

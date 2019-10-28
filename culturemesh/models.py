@@ -61,7 +61,8 @@ class User(object):
 		How many seconds before this user's
 		CultureMesh API token expires.
 		"""
-		return self.token_expiration_epoch_ - int(time.time())
+		return int(self.token_expiration_epoch_) - time.time()
+
 
 	@property
 	def is_active(self):
