@@ -26,17 +26,15 @@ def render_feedback_form():
     if(request.method == 'POST'):
         formdata = request.form
         feedback = formdata['feedback']
-        print(type(current_user.get_id()))
-
         user_info = 'guest user'
         if current_user.get_id() != None:
             user_info = current_user.get_id()
 
 
-        msg = Message(str(datetime.datetime.now()) + ' : ' + user_info,
+        msg = Message(str(datetime.datetime.now()),
                       sender = 'culturemesh.feedback@gmail.com',
                       recipients = ['culturemesh.feedback@gmail.com'], )
-        msg.body = feedback
+        msg.body = user_info + ':\n\n' + feedback
         mail.send(msg)
         return redirect('/feedback/submitted/')
 
