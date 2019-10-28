@@ -59,7 +59,6 @@ def render_event():
     else:
         user_id = None
 
-
     return render_template(
       'event.html',
       event=event,

@@ -63,6 +63,7 @@ class User(object):
 		"""
 		return int(self.token_expiration_epoch_) - time.time()
 
+
 	@property
 	def is_active(self):
 		return True
