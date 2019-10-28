@@ -300,6 +300,10 @@ body {
   width: 100%;
 }
 
+#half-width {
+  width: 50%
+}
+
 /* CultureMesh-specific class styling below */
 
 .no-padding {
@@ -744,7 +748,8 @@ body {
 }
 
 .cm-index-page {
-  background-color: white
+  display: block;
+  background-color: white;
   text-align: center;
   margin-left: auto;
   margin-right: auto;

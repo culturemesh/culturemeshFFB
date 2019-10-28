@@ -42,7 +42,7 @@ def render_event():
 
     if is_logged_in(current_user):
         user_id = current_user.id
-        if event['id_host'] == user_id:
+        if event['id_host'] == int(user_id):
 
           # The current user is hosting this event.
           role = 'hosting'

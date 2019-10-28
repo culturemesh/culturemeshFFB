@@ -164,7 +164,7 @@ def attempt_login(c, email_or_username, password):
   user_dict = c.get_user(token['id'])
   user = User(user_dict, api_token=token)
   flask_login.login_user(user)
-  return redirect('/about/')
+  return redirect('/home/')
 
 @login_manager.user_loader
 def load_user(user_json_str):

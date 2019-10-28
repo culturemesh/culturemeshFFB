@@ -301,7 +301,7 @@ def user_is_attending_event(client, user_id, event):
   """
   event_registration_list = client.get_event_registration_list(event['id'], 500)
   for reg in event_registration_list:
-    if user_id == reg['id_guest']:
+    if int(user_id) == reg['id_guest']:
       return True
   return False
 

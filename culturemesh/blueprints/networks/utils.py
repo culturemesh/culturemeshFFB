@@ -19,9 +19,12 @@ def gather_network_info(id_network, id_user, client, scenario="normal"):
     post['time_ago'] = get_time_ago(post['post_date'])
 
   user_is_member = False
+  print(id_user)
   if not id_user == None:
       user_networks = client.get_user_networks(id_user, count=100)
+      print(user_networks)
       for network_ in user_networks:
+        print('id_network: {} \n network[id]: {}'.format(id_network, network_['id']))
         if int(id_network) == int(network_['id']):
           user_is_member = True
           break

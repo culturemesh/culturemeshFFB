@@ -115,7 +115,9 @@
       <div class="row py-1">
         <a href="/post/?id={{ post['id'] }}" class="hidden-link">
           <p class="cm-post-blurb-text">
-            {{ post['post_text'] | truncate(128) }}
+            {% if post['post_text'] is not none %}
+              {{ post['post_text'] | truncate(128) }}
+            {% endif %}
           </p>
         </a>
       </div>

@@ -9,7 +9,7 @@
 	<!-- favicon (logo in tab) -->
 	<link rel="icon" type="image/x-icon" href="https://www.culturemesh.com/images/cm_logo_blank_profile_icon.png">
 </head>
-<div class="row">
+<div>
 	<div class="cm-index-page">
 		<br>
 		<!-- logo -->
@@ -27,34 +27,30 @@
 			<p class="p-3">{{ msg }}</p>
 		</div>
 		<!-- login functionality for the index page -->
-		<form action="" method="post">
+		<form action="\login\" method="post">
 			{{ form.hidden_tag() }}
-			<input type="text" class="cm-input-field" name="email_or_username" placeholder="Email or Username"></input>
+			<input type="text" id="half-width" class="cm-input-field" name="email_or_username" placeholder="Email or Username"></input>
 			<br>
-			<input type="password" class="cm-input-field" name="password" placeholder="Password"></input>
-			<br>
-			<br>
-			<input type="submit" class="cm-box-button" id="signin-button" value="Login"></input>
+			<input type="password" id="half-width" class="cm-input-field" name="password" placeholder="Password"></input>
 			<br>
 			<br>
-		</form>
-		<form action="/register/" method="">
-			<input type="submit" class="cm-register-button" value="Need an account?"></input>
+			<input type="submit" class="cm-guest-button" id="signin-button" value="Log in"></input>
+			<br>
 		</form>
 		<h3 class="p-2" id="loginOrGuest">
 			or
 		</h3>
 		<form action="/search/" method="">
-			<input type="submit" class="cm-guest-button" value="CONTINUE AS GUEST">
+			<input type="submit" class="cm-guest-button" value="Continue as Guest">
 		</form>
+		<div class="cm-signup-section py-4">
+    	<div class="cm-account-prompt p-2">
+        	Need an account?
+    	</div>
+    	<a href="/register/">Sign Up</a>
+		</div>
 		<br>
 	</div>
-
-
-
-
-
-
 </div>
 
 {% endblock %}
