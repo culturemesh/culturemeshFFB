@@ -7,7 +7,7 @@ def test_landing(client):
 
     # Check that links to `about` and `login` pages exist
     assert "<a href=\"/about/\">About</a>" in html
-    assert " <a href=\"/home/\">Login</a>" in html
+    assert " <a href=\"/home/\">Log in</a>" in html
 
     # Spot check important text
     assert "At CultureMesh, we're building networks to match these " \

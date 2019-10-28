@@ -300,9 +300,10 @@ def user_is_attending_event(client, user_id, event):
   object. Assumes no more than 500 people are registered for an event.
   """
   event_registration_list = client.get_event_registration_list(event['id'], 500)
+  print(event_registration_list)
   for reg in event_registration_list:
-    if user_id == reg['id_guest']:
-      return True
+      if reg['id_guest'] == int(user_id):
+          return True
   return False
 
 def is_logged_in(current_user):

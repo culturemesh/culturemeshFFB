@@ -7,16 +7,14 @@
     <h4>Posts</h4>
   </div>
 
-  {% if network_info['user_is_member'] %}
-    <div class="pb-3 text-center">
-      <a class="btn btn-secondary"
-         type="button"
-         href="/network/posts/new/?id={{ network_info['id'] }}"
-         id="cm-create-post-button">
-         + Create a Post
-      </a>
-    </div>
-  {% endif %}
+  <div class="pb-3 text-center">
+    <a class="btn btn-secondary"
+       type="button"
+       href="/network/posts/new/?id={{ network_info['id'] }}"
+       id="cm-create-post-button">
+       + Create a Post
+    </a>
+  </div>
 
   {% for post in network_info['posts'] %}
   <div class="py-1 row">

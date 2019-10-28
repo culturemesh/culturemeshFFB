@@ -9,14 +9,14 @@
     <div class="cm-signin-prompt">
         <p class="p-3">{{ msg }}</p>
     </div>
-    <form action="" method="post">
+    <form action="\login\" method="post">
         {{ form.hidden_tag() }}
         <input type="text" class="cm-input-field" name="email_or_username" placeholder="Email or Username"></input>
         <br>
         <input type="password" class="cm-input-field" name="password" placeholder="Password"></input>
         <br>
         <br>
-        <input type="submit" class="cm-box-button" id="signin-button" value="Login"></input>
+        <input type="submit" class="cm-box-button" id="signin-button" value="Log in"></input>
     </form>
 </div>
 <div class="cm-signup-section py-4">
@@ -26,4 +26,3 @@
     <a href="/register/">Sign Up</a>
 </div>
 {% endblock %}
-

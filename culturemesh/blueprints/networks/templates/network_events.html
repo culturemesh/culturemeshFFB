@@ -7,16 +7,14 @@
     <h4>Events</h4>
   </div>
 
-  {% if network_info['user_is_member'] %}
-    <div class="pb-3 text-center">
-      <a class="btn btn-secondary"
-         type="button"
-         href="/network/events/new/?id={{ network_info['id'] }}"
-         id="cm-create-event-button">
-         + Create an Event
-      </a>
-    </div>
-  {% endif %}
+<div class="pb-3 text-center">
+<a class="btn btn-secondary"
+   type="button"
+   href="/network/events/new/?id={{network_info['id'] }}"
+   id="cm-create-event-button">
+ + Create an Event
+</a>
+</div>
 
   {% for event in network_info['events'] %}
   <div class="py-1 row">
